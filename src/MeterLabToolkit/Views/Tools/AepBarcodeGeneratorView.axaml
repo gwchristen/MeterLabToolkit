@@ -1,0 +1,26 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:MeterLabToolkit.ViewModels.Tools"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="MeterLabToolkit.Views.Tools.AepBarcodeGeneratorView"
+             x:DataType="vm:AepBarcodeGeneratorViewModel">
+    
+    <Design.DataContext>
+        <vm:AepBarcodeGeneratorViewModel/>
+    </Design.DataContext>
+
+    <StackPanel>
+        <TextBlock Text="AEP Barcode Generator" FontSize="24" FontWeight="Bold" Margin="0,0,0,20"/>
+        <TextBlock Text="Generate AEP barcodes for meters and devices" Opacity="0.7" Margin="0,0,0,20"/>
+        
+        <Border Background="#F5F5F5" Padding="20" CornerRadius="4">
+            <TextBlock Text="Tool interface will be implemented here" 
+                       HorizontalAlignment="Center" 
+                       VerticalAlignment="Center"
+                       Opacity="0.5"/>
+        </Border>
+    </StackPanel>
+    
+</UserControl>
