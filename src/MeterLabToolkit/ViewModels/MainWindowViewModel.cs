@@ -1,10 +1,12 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using System;
+using System.Threading.Tasks;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MeterLabToolkit.Services;
 
 namespace MeterLabToolkit.ViewModels;
 
-public partial class MainWindowViewModel : ViewModelBase
+public partial class MainWindowViewModel : ViewModelBase, IDisposable
 {
     private readonly IDataService _dataService;
 
@@ -18,17 +20,27 @@ public partial class MainWindowViewModel : ViewModelBase
     {
         _dataService = dataService;
         
-        // Initialize database on startup
-        InitializeDatabaseAsync();
+        // Initialize database on startup - fire and forget is acceptable here
+        // as this is startup initialization
+        _ = InitializeDatabaseAsync();
     }
 
     public MainWindowViewModel() : this(new DataService())
     {
     }
 
-    private async void InitializeDatabaseAsync()
+    private async Task InitializeDatabaseAsync()
     {
-        await _dataService.InitializeDatabaseAsync();
+        try
+        {
+            await _dataService.InitializeDatabaseAsync();
+        }
+        catch (Exception ex)
+        {
+            // Log or handle database initialization errors
+            // In a production app, you might want to show an error dialog
+            System.Diagnostics.Debug.WriteLine($"Database initialization error: {ex.Message}");
+        }
     }
 
     [RelayCommand]
@@ -51,5 +63,13 @@ public partial class MainWindowViewModel : ViewModelBase
     private void ToggleBottomPanel()
     {
         IsBottomPanelVisible = !IsBottomPanelVisible;
+    }
+
+    public void Dispose()
+    {
+        if (_dataService is IDisposable disposable)
+        {
+            disposable.Dispose();
+        }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -6,9 +7,10 @@ using MeterLabToolkit.Models;
 
 namespace MeterLabToolkit.Services;
 
-public class DataService : IDataService
+public class DataService : IDataService, IDisposable
 {
     private readonly AppDbContext _context;
+    private bool _disposed;
 
     public DataService()
     {
@@ -215,6 +217,24 @@ public class DataService : IDataService
         {
             _context.DeviceCodes.Remove(code);
             await _context.SaveChangesAsync();
+        }
+    }
+
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+
+    protected virtual void Dispose(bool disposing)
+    {
+        if (!_disposed)
+        {
+            if (disposing)
+            {
+                _context?.Dispose();
+            }
+            _disposed = true;
         }
     }
 }
