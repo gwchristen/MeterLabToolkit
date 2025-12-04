@@ -112,8 +112,16 @@ public partial class CreatedHistoriesViewModel : ViewModelBase
 
     private async Task InitializeAsync()
     {
-        await LoadReferenceDataAsync();
-        await LoadHistoriesAsync();
+        try
+        {
+            await LoadReferenceDataAsync();
+            await LoadHistoriesAsync();
+        }
+        catch (Exception ex)
+        {
+            // Log initialization errors
+            System.Diagnostics.Debug.WriteLine($"Initialization error: {ex.Message}");
+        }
     }
 
     private async Task LoadReferenceDataAsync()
@@ -260,7 +268,16 @@ public partial class CreatedHistoriesViewModel : ViewModelBase
         {
             if (long.TryParse(BegSer, out long begValue) && long.TryParse(EndSer, out long endValue))
             {
-                Qty = (int)(endValue - begValue + 1);
+                // Validate that BegSer <= EndSer
+                if (begValue <= endValue)
+                {
+                    Qty = (int)(endValue - begValue + 1);
+                }
+                else
+                {
+                    // Invalid range - EndSer is less than BegSer
+                    Qty = 0;
+                }
             }
             return;
         }
@@ -278,7 +295,11 @@ public partial class CreatedHistoriesViewModel : ViewModelBase
                         long.TryParse(parts[0], out long start) &&
                         long.TryParse(parts[1], out long end))
                     {
-                        Qty += (int)(end - start + 1);
+                        // Validate range
+                        if (start <= end)
+                        {
+                            Qty += (int)(end - start + 1);
+                        }
                     }
                 }
                 else
