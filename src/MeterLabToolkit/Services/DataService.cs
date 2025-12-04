@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using MeterLabToolkit.Data;
@@ -26,6 +27,13 @@ public class DataService : IDataService, IDisposable
     public async Task<List<CreatedHistory>> GetCreatedHistoriesAsync()
     {
         return await _context.CreatedHistories.ToListAsync();
+    }
+
+    public async Task<List<CreatedHistory>> GetCreatedHistoriesAsync(string opCo, string deviceType)
+    {
+        return await _context.CreatedHistories
+            .Where(h => h.OpCo == opCo && h.DeviceType == deviceType)
+            .ToListAsync();
     }
 
     public async Task<CreatedHistory?> GetCreatedHistoryAsync(int id)
@@ -193,6 +201,18 @@ public class DataService : IDataService, IDisposable
         return await _context.DeviceCodes.ToListAsync();
     }
 
+    public async Task<List<DeviceCode>> GetDeviceCodesAsync(string? deviceType)
+    {
+        if (string.IsNullOrEmpty(deviceType))
+        {
+            return await _context.DeviceCodes.ToListAsync();
+        }
+        
+        return await _context.DeviceCodes
+            .Where(d => d.DeviceType == deviceType)
+            .ToListAsync();
+    }
+
     public async Task<DeviceCode?> GetDeviceCodeAsync(int id)
     {
         return await _context.DeviceCodes.FindAsync(id);
@@ -218,6 +238,24 @@ public class DataService : IDataService, IDisposable
             _context.DeviceCodes.Remove(code);
             await _context.SaveChangesAsync();
         }
+    }
+
+    // OpCos
+    public async Task<List<OpCo>> GetOpCosAsync()
+    {
+        return await _context.OpCos.ToListAsync();
+    }
+
+    // Statuses
+    public async Task<List<Status>> GetStatusesAsync()
+    {
+        return await _context.Statuses.ToListAsync();
+    }
+
+    // Purchase Codes
+    public async Task<List<PurchaseCode>> GetPurchaseCodesAsync()
+    {
+        return await _context.PurchaseCodes.ToListAsync();
     }
 
     public void Dispose()

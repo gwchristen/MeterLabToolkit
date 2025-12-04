@@ -8,6 +8,7 @@ public interface IDataService
 {
     // Created Histories
     Task<List<CreatedHistory>> GetCreatedHistoriesAsync();
+    Task<List<CreatedHistory>> GetCreatedHistoriesAsync(string opCo, string deviceType);
     Task<CreatedHistory?> GetCreatedHistoryAsync(int id);
     Task AddCreatedHistoryAsync(CreatedHistory history);
     Task UpdateCreatedHistoryAsync(CreatedHistory history);
@@ -43,10 +44,20 @@ public interface IDataService
 
     // Device Codes
     Task<List<DeviceCode>> GetDeviceCodesAsync();
+    Task<List<DeviceCode>> GetDeviceCodesAsync(string? deviceType);
     Task<DeviceCode?> GetDeviceCodeAsync(int id);
     Task AddDeviceCodeAsync(DeviceCode code);
     Task UpdateDeviceCodeAsync(DeviceCode code);
     Task DeleteDeviceCodeAsync(int id);
+
+    // OpCos
+    Task<List<OpCo>> GetOpCosAsync();
+
+    // Statuses
+    Task<List<Status>> GetStatusesAsync();
+
+    // Purchase Codes
+    Task<List<PurchaseCode>> GetPurchaseCodesAsync();
 
     // Database initialization
     Task InitializeDatabaseAsync();

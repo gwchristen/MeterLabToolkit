@@ -13,6 +13,9 @@ public class AppDbContext : DbContext
     public DbSet<LookupCode> LookupCodes { get; set; }
     public DbSet<ManufacturerCode> ManufacturerCodes { get; set; }
     public DbSet<DeviceCode> DeviceCodes { get; set; }
+    public DbSet<OpCo> OpCos { get; set; }
+    public DbSet<Status> Statuses { get; set; }
+    public DbSet<PurchaseCode> PurchaseCodes { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -68,5 +71,17 @@ public class AppDbContext : DbContext
         {
             entity.HasKey(e => e.Id);
         });
+
+        // Seed data
+        modelBuilder.Entity<OpCo>().HasData(
+            new OpCo { Id = 1, Code = "Ohio", Description = "Ohio Power" },
+            new OpCo { Id = 2, Code = "I&M", Description = "Indiana & Michigan" }
+        );
+
+        modelBuilder.Entity<Status>().HasData(
+            new Status { Id = 1, Code = "RC", Description = "Received" },
+            new Status { Id = 2, Code = "PD", Description = "Pending" },
+            new Status { Id = 3, Code = "CM", Description = "Complete" }
+        );
     }
 }
