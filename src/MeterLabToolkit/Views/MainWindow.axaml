@@ -124,17 +124,7 @@
 
             <!-- Main Content Area -->
             <Border Grid.Column="1" Background="White" Padding="20">
-                <ContentControl Content="{Binding CurrentView}">
-                    <ContentControl.ContentTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="Welcome to MeterLab Toolkit" 
-                                       FontSize="24" 
-                                       HorizontalAlignment="Center" 
-                                       VerticalAlignment="Center"
-                                       Opacity="0.5"/>
-                        </DataTemplate>
-                    </ContentControl.ContentTemplate>
-                </ContentControl>
+                <ContentControl Content="{Binding CurrentView}"/>
             </Border>
         </Grid>
 
