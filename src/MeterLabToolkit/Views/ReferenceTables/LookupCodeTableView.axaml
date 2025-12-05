@@ -65,7 +65,7 @@
                         <Setter Property="Background" Value="#0078D4"/>
                         <Setter Property="Foreground" Value="White"/>
                     </Style>
-                    <Style Selector="DataGridRow:pointerover">
+                    <Style Selector="DataGridRow:pointerover:not(:selected)">
                         <Setter Property="Background" Value="#E5F3FF"/>
                     </Style>
                     
@@ -78,6 +78,7 @@
                         <Setter Property="BorderThickness" Value="0,0,1,0"/>
                     </Style>
                     <Style Selector="DataGridCell:selected">
+                        <Setter Property="Background" Value="Transparent"/>
                         <Setter Property="Foreground" Value="White"/>
                     </Style>
                     
