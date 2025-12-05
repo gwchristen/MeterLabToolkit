@@ -14,8 +14,8 @@
     <Grid RowDefinitions="Auto,*,Auto">
         <!-- Header -->
         <StackPanel Grid.Row="0" Margin="20,20,20,10">
-            <TextBlock Text="Lookup Codes" FontSize="24" FontWeight="Bold"/>
-            <TextBlock Text="Manage lookup code reference data (AEP barcode meter prefix)" Opacity="0.7" Margin="0,5,0,0"/>
+            <TextBlock Text="Lookup Codes" FontSize="24" FontWeight="Bold" Foreground="#1a1a1a"/>
+            <TextBlock Text="Manage lookup code reference data (AEP barcode meter prefix)" Foreground="#333333" Opacity="0.7" Margin="0,5,0,0"/>
         </StackPanel>
 
         <!-- DataGrid -->
@@ -27,6 +27,14 @@
                      IsReadOnly="False"
                      CanUserResizeColumns="True"
                      CanUserSortColumns="True">
+                <DataGrid.Styles>
+                    <Style Selector="DataGridColumnHeader">
+                        <Setter Property="Foreground" Value="#333333"/>
+                    </Style>
+                    <Style Selector="DataGridCell">
+                        <Setter Property="Foreground" Value="#333333"/>
+                    </Style>
+                </DataGrid.Styles>
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Code" Binding="{Binding Code}" Width="200"/>
                     <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="*"/>
@@ -48,6 +56,7 @@
                           IsVisible="{Binding IsLoading}"
                           VerticalAlignment="Center"
                           Margin="20,0,0,0"
+                          Foreground="#333333"
                           Opacity="0.7"/>
             </StackPanel>
         </Border>

@@ -12,14 +12,15 @@
     </Design.DataContext>
 
     <StackPanel>
-        <TextBlock Text="Cellular/uAP Registration" FontSize="24" FontWeight="Bold" Margin="0,0,0,20"/>
-        <TextBlock Text="Manage cellular device registration records" Opacity="0.7" Margin="0,0,0,20"/>
+        <TextBlock Text="Cellular/uAP Registration" FontSize="24" FontWeight="Bold" Foreground="#1a1a1a" Margin="0,0,0,20"/>
+        <TextBlock Text="Manage cellular device registration records" Foreground="#333333" Opacity="0.7" Margin="0,0,0,20"/>
         
         <!-- Placeholder for data grid -->
         <Border Background="#F5F5F5" Padding="20" CornerRadius="4">
             <TextBlock Text="Data grid will be implemented here" 
                        HorizontalAlignment="Center" 
                        VerticalAlignment="Center"
+                       Foreground="#333333"
                        Opacity="0.5"/>
         </Border>
     </StackPanel>
