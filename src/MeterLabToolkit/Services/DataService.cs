@@ -246,16 +246,97 @@ public class DataService : IDataService, IDisposable
         return await _context.OpCos.ToListAsync();
     }
 
+    public async Task<OpCo?> GetOpCoAsync(int id)
+    {
+        return await _context.OpCos.FindAsync(id);
+    }
+
+    public async Task AddOpCoAsync(OpCo opCo)
+    {
+        _context.OpCos.Add(opCo);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task UpdateOpCoAsync(OpCo opCo)
+    {
+        _context.OpCos.Update(opCo);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task DeleteOpCoAsync(int id)
+    {
+        var opCo = await _context.OpCos.FindAsync(id);
+        if (opCo != null)
+        {
+            _context.OpCos.Remove(opCo);
+            await _context.SaveChangesAsync();
+        }
+    }
+
     // Statuses
     public async Task<List<Status>> GetStatusesAsync()
     {
         return await _context.Statuses.ToListAsync();
     }
 
+    public async Task<Status?> GetStatusAsync(int id)
+    {
+        return await _context.Statuses.FindAsync(id);
+    }
+
+    public async Task AddStatusAsync(Status status)
+    {
+        _context.Statuses.Add(status);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task UpdateStatusAsync(Status status)
+    {
+        _context.Statuses.Update(status);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task DeleteStatusAsync(int id)
+    {
+        var status = await _context.Statuses.FindAsync(id);
+        if (status != null)
+        {
+            _context.Statuses.Remove(status);
+            await _context.SaveChangesAsync();
+        }
+    }
+
     // Purchase Codes
     public async Task<List<PurchaseCode>> GetPurchaseCodesAsync()
     {
         return await _context.PurchaseCodes.ToListAsync();
+    }
+
+    public async Task<PurchaseCode?> GetPurchaseCodeAsync(int id)
+    {
+        return await _context.PurchaseCodes.FindAsync(id);
+    }
+
+    public async Task AddPurchaseCodeAsync(PurchaseCode code)
+    {
+        _context.PurchaseCodes.Add(code);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task UpdatePurchaseCodeAsync(PurchaseCode code)
+    {
+        _context.PurchaseCodes.Update(code);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task DeletePurchaseCodeAsync(int id)
+    {
+        var code = await _context.PurchaseCodes.FindAsync(id);
+        if (code != null)
+        {
+            _context.PurchaseCodes.Remove(code);
+            await _context.SaveChangesAsync();
+        }
     }
 
     public void Dispose()
