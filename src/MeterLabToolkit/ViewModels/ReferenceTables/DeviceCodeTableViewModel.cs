@@ -40,9 +40,17 @@ public partial class DeviceCodeTableViewModel : ReferenceTableViewModelBase
     [RelayCommand]
     private void AddNew()
     {
-        var newItem = new DeviceCode { Code = "", Description = "", DeviceType = "Meter" };
-        Items.Add(newItem);
-        SelectedItem = newItem;
+        try
+        {
+            var newItem = new DeviceCode { Code = "", Description = "", DeviceType = "Meter" };
+            Items.Add(newItem);
+            SelectedItem = newItem;
+            ErrorMessage = "New row added. Edit the values and click Save.";
+        }
+        catch (Exception ex)
+        {
+            ErrorMessage = $"Error adding new item: {ex.Message}";
+        }
     }
 
     [RelayCommand]
@@ -51,24 +59,34 @@ public partial class DeviceCodeTableViewModel : ReferenceTableViewModelBase
         try
         {
             IsLoading = true;
+            ErrorMessage = null;
+            int savedCount = 0;
 
             foreach (var item in Items)
             {
+                if (string.IsNullOrWhiteSpace(item.Code))
+                {
+                    continue; // Skip items without a code
+                }
+                
                 if (item.Id == 0)
                 {
                     await _dataService.AddDeviceCodeAsync(item);
+                    savedCount++;
                 }
                 else
                 {
                     await _dataService.UpdateDeviceCodeAsync(item);
+                    savedCount++;
                 }
             }
 
             await LoadDataAsync();
+            ErrorMessage = $"Successfully saved {savedCount} records.";
         }
         catch (Exception ex)
         {
-            System.Diagnostics.Debug.WriteLine($"Error saving Device Codes: {ex.Message}");
+            ErrorMessage = $"Error saving: {ex.Message}";
         }
         finally
         {
@@ -79,11 +97,16 @@ public partial class DeviceCodeTableViewModel : ReferenceTableViewModelBase
     [RelayCommand]
     private async Task DeleteAsync()
     {
-        if (SelectedItem == null) return;
+        if (SelectedItem == null)
+        {
+            ErrorMessage = "Please select a row to delete.";
+            return;
+        }
 
         try
         {
             IsLoading = true;
+            ErrorMessage = null;
 
             if (SelectedItem.Id > 0)
             {
@@ -91,10 +114,12 @@ public partial class DeviceCodeTableViewModel : ReferenceTableViewModelBase
             }
 
             Items.Remove(SelectedItem);
+            SelectedItem = null;
+            ErrorMessage = "Record deleted successfully.";
         }
         catch (Exception ex)
         {
-            System.Diagnostics.Debug.WriteLine($"Error deleting Device Code: {ex.Message}");
+            ErrorMessage = $"Error deleting: {ex.Message}";
         }
         finally
         {
@@ -107,21 +132,29 @@ public partial class DeviceCodeTableViewModel : ReferenceTableViewModelBase
     {
         try
         {
-            var csv = "Code,Description,DeviceType\n";
+            if (Items.Count == 0)
+            {
+                ErrorMessage = "No data to export.";
+                return;
+            }
+
+            var csv = new StringBuilder();
+            csv.AppendLine("Code,Description,DeviceType");
+            
             foreach (var item in Items)
             {
-                csv += $"\"{item.Code}\",\"{item.Description}\",\"{item.DeviceType}\"\n";
+                csv.AppendLine($"\"{item.Code}\",\"{item.Description}\",\"{item.DeviceType}\"");
             }
 
             var fileName = $"DeviceCodes_{DateTime.Now:yyyyMMdd_HHmmss}.csv";
             var filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), fileName);
             
-            await File.WriteAllTextAsync(filePath, csv);
-            System.Diagnostics.Debug.WriteLine($"Exported to: {filePath}");
+            await File.WriteAllTextAsync(filePath, csv.ToString());
+            ErrorMessage = $"Exported to: {filePath}";
         }
         catch (Exception ex)
         {
-            System.Diagnostics.Debug.WriteLine($"Error exporting CSV: {ex.Message}");
+            ErrorMessage = $"Error exporting CSV: {ex.Message}";
         }
     }
 
@@ -155,13 +188,23 @@ public partial class DeviceCodeTableViewModel : ReferenceTableViewModelBase
     {
         try
         {
-            // Use Avalonia's file picker
-            var topLevel = TopLevel.GetTopLevel(App.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop 
-                ? desktop.MainWindow : null);
+            ErrorMessage = null;
             
-            if (topLevel == null) return;
+            // Get the main window directly from Application
+            if (Application.Current?.ApplicationLifetime is not IClassicDesktopStyleApplicationLifetime desktop)
+            {
+                ErrorMessage = "Cannot access file picker";
+                return;
+            }
 
-            var files = await topLevel.StorageProvider.OpenFilePickerAsync(new FilePickerOpenOptions
+            var mainWindow = desktop.MainWindow;
+            if (mainWindow == null)
+            {
+                ErrorMessage = "Cannot access main window";
+                return;
+            }
+
+            var files = await mainWindow.StorageProvider.OpenFilePickerAsync(new FilePickerOpenOptions
             {
                 Title = "Import CSV",
                 AllowMultiple = false,
@@ -171,12 +214,13 @@ public partial class DeviceCodeTableViewModel : ReferenceTableViewModelBase
             if (files.Count == 0) return;
 
             var file = files[0];
-            using var stream = await file.OpenReadAsync();
+            await using var stream = await file.OpenReadAsync();
             using var reader = new StreamReader(stream);
             
             var content = await reader.ReadToEndAsync();
             var lines = content.Split('\n', StringSplitOptions.RemoveEmptyEntries);
             
+            int importedCount = 0;
             // Skip header row
             for (int i = 1; i < lines.Length; i++)
             {
@@ -185,20 +229,20 @@ public partial class DeviceCodeTableViewModel : ReferenceTableViewModelBase
                 {
                     var item = new DeviceCode 
                     { 
-                        Code = values[0].Trim('"'), 
-                        Description = values[1].Trim('"'),
-                        DeviceType = values[2].Trim('"')
+                        Code = values[0].Trim('"').Trim(), 
+                        Description = values[1].Trim('"').Trim(),
+                        DeviceType = values[2].Trim('"').Trim()
                     };
                     Items.Add(item);
+                    importedCount++;
                 }
             }
             
-            ErrorMessage = null;
+            ErrorMessage = $"Successfully imported {importedCount} records. Click Save to persist.";
         }
         catch (Exception ex)
         {
             ErrorMessage = $"Error importing CSV: {ex.Message}";
-            System.Diagnostics.Debug.WriteLine($"Error importing CSV: {ex.Message}");
         }
     }
 
