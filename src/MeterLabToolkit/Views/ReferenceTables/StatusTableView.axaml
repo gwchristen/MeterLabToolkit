@@ -1,0 +1,55 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:MeterLabToolkit.ViewModels.ReferenceTables"
+             mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="700"
+             x:Class="MeterLabToolkit.Views.ReferenceTables.StatusTableView"
+             x:DataType="vm:StatusTableViewModel">
+    
+    <Design.DataContext>
+        <vm:StatusTableViewModel/>
+    </Design.DataContext>
+
+    <Grid RowDefinitions="Auto,*,Auto">
+        <!-- Header -->
+        <StackPanel Grid.Row="0" Margin="20,20,20,10">
+            <TextBlock Text="Status Codes" FontSize="24" FontWeight="Bold"/>
+            <TextBlock Text="Manage status reference data" Opacity="0.7" Margin="0,5,0,0"/>
+        </StackPanel>
+
+        <!-- DataGrid -->
+        <Border Grid.Row="1" BorderBrush="#E0E0E0" BorderThickness="1" CornerRadius="4" Margin="20,0,20,10">
+            <DataGrid ItemsSource="{Binding Items}"
+                     SelectedItem="{Binding SelectedItem}"
+                     AutoGenerateColumns="False"
+                     GridLinesVisibility="All"
+                     IsReadOnly="False"
+                     CanUserResizeColumns="True"
+                     CanUserSortColumns="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Code" Binding="{Binding Code}" Width="200"/>
+                    <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
+
+        <!-- Action Buttons -->
+        <Border Grid.Row="2" Background="#F5F5F5" BorderBrush="#E0E0E0" BorderThickness="0,1,0,0" Padding="20,10">
+            <StackPanel Orientation="Horizontal" Spacing="10">
+                <Button Content="Add New" Command="{Binding AddNewCommand}" />
+                <Button Content="Save" Command="{Binding SaveCommand}" />
+                <Button Content="Delete Selected" Command="{Binding DeleteCommand}" />
+                <Separator Width="1" Background="#E0E0E0" Margin="10,0"/>
+                <Button Content="Export CSV" Command="{Binding ExportCsvCommand}" />
+                
+                <!-- Loading indicator -->
+                <TextBlock Text="Loading..." 
+                          IsVisible="{Binding IsLoading}"
+                          VerticalAlignment="Center"
+                          Margin="20,0,0,0"
+                          Opacity="0.7"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

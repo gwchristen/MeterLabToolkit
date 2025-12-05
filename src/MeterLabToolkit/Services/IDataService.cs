@@ -52,12 +52,24 @@ public interface IDataService
 
     // OpCos
     Task<List<OpCo>> GetOpCosAsync();
+    Task<OpCo?> GetOpCoAsync(int id);
+    Task AddOpCoAsync(OpCo opCo);
+    Task UpdateOpCoAsync(OpCo opCo);
+    Task DeleteOpCoAsync(int id);
 
     // Statuses
     Task<List<Status>> GetStatusesAsync();
+    Task<Status?> GetStatusAsync(int id);
+    Task AddStatusAsync(Status status);
+    Task UpdateStatusAsync(Status status);
+    Task DeleteStatusAsync(int id);
 
     // Purchase Codes
     Task<List<PurchaseCode>> GetPurchaseCodesAsync();
+    Task<PurchaseCode?> GetPurchaseCodeAsync(int id);
+    Task AddPurchaseCodeAsync(PurchaseCode code);
+    Task UpdatePurchaseCodeAsync(PurchaseCode code);
+    Task DeletePurchaseCodeAsync(int id);
 
     // Database initialization
     Task InitializeDatabaseAsync();

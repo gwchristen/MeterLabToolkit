@@ -74,14 +74,36 @@ public class AppDbContext : DbContext
 
         // Seed data
         modelBuilder.Entity<OpCo>().HasData(
-            new OpCo { Id = 1, Code = "Ohio", Description = "Ohio Power" },
-            new OpCo { Id = 2, Code = "I&M", Description = "Indiana & Michigan" }
+            new OpCo { Id = 1, Code = "Ohio", Description = "Ohio Power Company" },
+            new OpCo { Id = 2, Code = "I&M", Description = "Indiana & Michigan Power" }
         );
 
         modelBuilder.Entity<Status>().HasData(
             new Status { Id = 1, Code = "RC", Description = "Received" },
             new Status { Id = 2, Code = "PD", Description = "Pending" },
-            new Status { Id = 3, Code = "CM", Description = "Complete" }
+            new Status { Id = 3, Code = "CM", Description = "Complete" },
+            new Status { Id = 4, Code = "RJ", Description = "Rejected" }
+        );
+
+        modelBuilder.Entity<ManufacturerCode>().HasData(
+            new ManufacturerCode { Id = 1, Code = "GE", IndustryCode = "G", Name = "General Electric" },
+            new ManufacturerCode { Id = 2, Code = "IT", IndustryCode = "I", Name = "Itron" },
+            new ManufacturerCode { Id = 3, Code = "LG", IndustryCode = "L", Name = "Landis+Gyr" }
+        );
+
+        modelBuilder.Entity<DeviceCode>().HasData(
+            new DeviceCode { Id = 1, Code = "NMD06", Description = "Network Meter Device", DeviceType = "Meter" },
+            new DeviceCode { Id = 2, Code = "CF62K", Description = "Current Former 62K", DeviceType = "Transformer" }
+        );
+
+        modelBuilder.Entity<LookupCode>().HasData(
+            new LookupCode { Id = 1, Code = "1N", Description = "Standard Network" },
+            new LookupCode { Id = 2, Code = "2N", Description = "Alternate Network" }
+        );
+
+        modelBuilder.Entity<PurchaseCode>().HasData(
+            new PurchaseCode { Id = 1, Code = "PUR01", Description = "Standard Purchase" },
+            new PurchaseCode { Id = 2, Code = "PUR02", Description = "Emergency Purchase" }
         );
     }
 }

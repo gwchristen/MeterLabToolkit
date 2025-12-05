@@ -50,7 +50,42 @@
                         <!-- Reference Tables Section -->
                         <Expander Header="Reference Tables" Margin="0,0,0,10">
                             <StackPanel Margin="10,5,0,0">
-                                <TextBlock Text="(Coming Soon)" FontStyle="Italic" Opacity="0.6" Margin="0,2"/>
+                                <Button Content="OpCo" 
+                                        Command="{Binding NavigateToViewCommand}"
+                                        CommandParameter="OpCoTable"
+                                        HorizontalAlignment="Stretch"
+                                        HorizontalContentAlignment="Left"
+                                        Margin="0,2"/>
+                                <Button Content="Status" 
+                                        Command="{Binding NavigateToViewCommand}"
+                                        CommandParameter="StatusTable"
+                                        HorizontalAlignment="Stretch"
+                                        HorizontalContentAlignment="Left"
+                                        Margin="0,2"/>
+                                <Button Content="Manufacturer Codes" 
+                                        Command="{Binding NavigateToViewCommand}"
+                                        CommandParameter="ManufacturerTable"
+                                        HorizontalAlignment="Stretch"
+                                        HorizontalContentAlignment="Left"
+                                        Margin="0,2"/>
+                                <Button Content="Device Codes" 
+                                        Command="{Binding NavigateToViewCommand}"
+                                        CommandParameter="DeviceCodeTable"
+                                        HorizontalAlignment="Stretch"
+                                        HorizontalContentAlignment="Left"
+                                        Margin="0,2"/>
+                                <Button Content="Lookup Codes" 
+                                        Command="{Binding NavigateToViewCommand}"
+                                        CommandParameter="LookupCodeTable"
+                                        HorizontalAlignment="Stretch"
+                                        HorizontalContentAlignment="Left"
+                                        Margin="0,2"/>
+                                <Button Content="Purchase Codes" 
+                                        Command="{Binding NavigateToViewCommand}"
+                                        CommandParameter="PurchaseCodeTable"
+                                        HorizontalAlignment="Stretch"
+                                        HorizontalContentAlignment="Left"
+                                        Margin="0,2"/>
                             </StackPanel>
                         </Expander>
 
