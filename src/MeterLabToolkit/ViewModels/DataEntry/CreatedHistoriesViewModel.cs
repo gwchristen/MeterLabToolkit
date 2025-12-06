@@ -325,6 +325,8 @@ public partial class CreatedHistoriesViewModel : ViewModelBase
     {
         SelectedHistory = null;
         ClearForm();
+        StatusMessage = "New record - fill in the form and click Save.";
+        IsError = false;
     }
 
     private void ClearForm()
