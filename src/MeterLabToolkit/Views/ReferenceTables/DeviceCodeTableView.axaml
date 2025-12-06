@@ -40,11 +40,67 @@
                   IsReadOnly="False"
                   CanUserResizeColumns="True"
                   CanUserSortColumns="True"
+                  Background="#1e1e1e"
+                  RowBackground="#2d2d30"
+                  Foreground="#e0e0e0"
+                  GridLinesVisibility="All"
+                  HorizontalGridLinesBrush="#3f3f46"
+                  VerticalGridLinesBrush="#3f3f46"
+                  BorderBrush="#3f3f46"
+                  BorderThickness="1"
                   Margin="0,0,0,10">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Code" Binding="{Binding Code}" Width="120"/>
-                <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="300"/>
-                <DataGridTextColumn Header="Device Type" Binding="{Binding DeviceType}" Width="*"/>
+                <DataGridTemplateColumn Header="Code" Width="120">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Code}" 
+                                       Foreground="#e0e0e0" 
+                                       VerticalAlignment="Center" 
+                                       Margin="8,4"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <TextBox Text="{Binding Code, Mode=TwoWay}" 
+                                     Foreground="#ffffff" 
+                                     Background="#3c3c3c"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Description" Width="300">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Description}" 
+                                       Foreground="#e0e0e0" 
+                                       VerticalAlignment="Center" 
+                                       Margin="8,4"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <TextBox Text="{Binding Description, Mode=TwoWay}" 
+                                     Foreground="#ffffff" 
+                                     Background="#3c3c3c"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Device Type" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding DeviceType}" 
+                                       Foreground="#e0e0e0" 
+                                       VerticalAlignment="Center" 
+                                       Margin="8,4"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <TextBox Text="{Binding DeviceType, Mode=TwoWay}" 
+                                     Foreground="#ffffff" 
+                                     Background="#3c3c3c"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
 
