@@ -7,41 +7,29 @@
              mc:Ignorable="d" d:DesignWidth="1200" d:DesignHeight="800"
              x:Class="MeterLabToolkit.Views.DataEntry.CreatedHistoriesView"
              x:DataType="vm:CreatedHistoriesViewModel">
-    
+     
     <Design.DataContext>
         <vm:CreatedHistoriesViewModel/>
     </Design.DataContext>
 
     <Grid RowDefinitions="Auto,*,Auto">
         <!-- Header -->
-        <StackPanel Grid.Row="0" Margin="20,20,20,10">
-            <TextBlock Text="Created Histories" FontSize="24" FontWeight="Bold" Foreground="#1a1a1a"/>
-            <TextBlock Text="Manage meter and device creation history records" Foreground="#333333" Opacity="0.7" Margin="0,5,0,0"/>
+        <StackPanel Grid.Row="0" Margin="0,0,0,10">
+            <TextBlock Text="Created Histories" FontSize="24" FontWeight="Bold" Foreground="#ffffff"/>
+            <TextBlock Text="Manage meter and device creation history records" Foreground="#999999" Margin="0,5,0,0"/>
         </StackPanel>
 
         <!-- TabControl and Content -->
-        <Grid Grid.Row="1" Margin="20,0,20,10">
+        <Grid Grid.Row="1" Margin="0,0,0,10">
             <TabControl SelectedIndex="{Binding SelectedTabIndex}">
-                <TabControl.Styles>
-                    <Style Selector="TabItem">
-                        <Setter Property="Foreground" Value="#333333"/>
-                    </Style>
-                    <Style Selector="DataGridColumnHeader">
-                        <Setter Property="Foreground" Value="#333333"/>
-                    </Style>
-                    <Style Selector="DataGridCell">
-                        <Setter Property="Foreground" Value="#333333"/>
-                    </Style>
-                </TabControl.Styles>
                 <!-- Ohio - Meters -->
                 <TabItem Header="Ohio - Meters">
                     <Grid ColumnDefinitions="2*,3*" Margin="10">
                         <!-- Left: DataGrid -->
-                        <Border Grid.Column="0" BorderBrush="#E0E0E0" BorderThickness="1" CornerRadius="4" Padding="5" Margin="0,0,10,0">
+                        <Border Grid.Column="0" BorderBrush="#3f3f46" BorderThickness="1" CornerRadius="4" Padding="5" Margin="0,0,10,0" Background="#2d2d30">
                             <DataGrid ItemsSource="{Binding Histories}"
                                      SelectedItem="{Binding SelectedHistory}"
                                      AutoGenerateColumns="False"
-                                     GridLinesVisibility="All"
                                      IsReadOnly="True"
                                      CanUserResizeColumns="True">
                                 <DataGrid.Columns>
@@ -60,13 +48,13 @@
                         </Border>
 
                         <!-- Right: Form -->
-                        <Border Grid.Column="1" BorderBrush="#E0E0E0" BorderThickness="1" CornerRadius="4" Padding="15">
+                        <Border Grid.Column="1" BorderBrush="#3f3f46" BorderThickness="1" CornerRadius="4" Padding="15" Background="#2d2d30">
                             <ScrollViewer VerticalScrollBarVisibility="Auto">
                                 <StackPanel Spacing="10">
-                                    <TextBlock Text="Record Details" FontSize="16" FontWeight="SemiBold" Foreground="#1a1a1a" Margin="0,0,0,10"/>
+                                    <TextBlock Text="Record Details" FontSize="16" FontWeight="SemiBold" Foreground="#ffffff" Margin="0,0,0,10"/>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="Status" FontWeight="Medium" Foreground="#333333"/>
+                                        <TextBlock Text="Status" FontWeight="Medium" Foreground="#cccccc"/>
                                         <ComboBox ItemsSource="{Binding Statuses}"
                                                  SelectedItem="{Binding SelectedStatus}"
                                                  DisplayMemberBinding="{Binding Code}"
@@ -74,7 +62,7 @@
                                     </StackPanel>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="Manufacturer" FontWeight="Medium" Foreground="#333333"/>
+                                        <TextBlock Text="Manufacturer" FontWeight="Medium" Foreground="#cccccc"/>
                                         <ComboBox ItemsSource="{Binding Manufacturers}"
                                                  SelectedItem="{Binding SelectedManufacturer}"
                                                  DisplayMemberBinding="{Binding Code}"
@@ -82,7 +70,7 @@
                                     </StackPanel>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="Device Code" FontWeight="Medium" Foreground="#333333"/>
+                                        <TextBlock Text="Device Code" FontWeight="Medium" Foreground="#cccccc"/>
                                         <ComboBox ItemsSource="{Binding DeviceCodes}"
                                                  SelectedItem="{Binding SelectedDevCode}"
                                                  DisplayMemberBinding="{Binding Code}"
@@ -90,59 +78,59 @@
                                     </StackPanel>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="Beginning Serial" FontWeight="Medium" Foreground="#333333"/>
+                                        <TextBlock Text="Beginning Serial" FontWeight="Medium" Foreground="#cccccc"/>
                                         <TextBox Text="{Binding BegSer}" Watermark="Enter beginning serial"/>
                                     </StackPanel>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="Ending Serial" FontWeight="Medium" Foreground="#333333"/>
+                                        <TextBlock Text="Ending Serial" FontWeight="Medium" Foreground="#cccccc"/>
                                         <TextBox Text="{Binding EndSer}" Watermark="Enter ending serial"/>
                                     </StackPanel>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="Out of Range (OOR)" FontWeight="Medium" Foreground="#333333"/>
+                                        <TextBlock Text="Out of Range (OOR)" FontWeight="Medium" Foreground="#cccccc"/>
                                         <TextBox Text="{Binding Oor}" 
                                                 Watermark="e.g., 10023-10033, 20023-20033"
                                                 AcceptsReturn="False"/>
                                     </StackPanel>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="Quantity" FontWeight="Medium" Foreground="#333333"/>
-                                        <TextBox Text="{Binding Qty}" IsReadOnly="True" Background="#F5F5F5"/>
+                                        <TextBlock Text="Quantity" FontWeight="Medium" Foreground="#cccccc"/>
+                                        <TextBox Text="{Binding Qty}" IsReadOnly="True" Background="#252526"/>
                                     </StackPanel>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="PO Date" FontWeight="Medium" Foreground="#333333"/>
+                                        <TextBlock Text="PO Date" FontWeight="Medium" Foreground="#cccccc"/>
                                         <DatePicker SelectedDate="{Binding PoDate}"/>
                                     </StackPanel>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="PO Number" FontWeight="Medium" Foreground="#333333"/>
+                                        <TextBlock Text="PO Number" FontWeight="Medium" Foreground="#cccccc"/>
                                         <TextBox Text="{Binding PoNumber}" Watermark="Enter PO number"/>
                                     </StackPanel>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="Received Date" FontWeight="Medium" Foreground="#333333"/>
+                                        <TextBlock Text="Received Date" FontWeight="Medium" Foreground="#cccccc"/>
                                         <DatePicker SelectedDate="{Binding RecvDate}"/>
                                     </StackPanel>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="Unit Cost" FontWeight="Medium" Foreground="#333333"/>
+                                        <TextBlock Text="Unit Cost" FontWeight="Medium" Foreground="#cccccc"/>
                                         <TextBox Text="{Binding UnitCost}" Watermark="0.00"/>
                                     </StackPanel>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="CID" FontWeight="Medium" Foreground="#333333"/>
+                                        <TextBlock Text="CID" FontWeight="Medium" Foreground="#cccccc"/>
                                         <TextBox Text="{Binding Cid}" Watermark="Enter CID"/>
                                     </StackPanel>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="M.E. Number" FontWeight="Medium" Foreground="#333333"/>
+                                        <TextBlock Text="M.E. Number" FontWeight="Medium" Foreground="#cccccc"/>
                                         <TextBox Text="{Binding MeNumber}" Watermark="Enter M.E. number"/>
                                     </StackPanel>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="Purchase Code" FontWeight="Medium" Foreground="#333333"/>
+                                        <TextBlock Text="Purchase Code" FontWeight="Medium" Foreground="#cccccc"/>
                                         <ComboBox ItemsSource="{Binding PurchaseCodes}"
                                                  SelectedItem="{Binding SelectedPurCode}"
                                                  DisplayMemberBinding="{Binding Code}"
@@ -150,12 +138,12 @@
                                     </StackPanel>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="Established" FontWeight="Medium" Foreground="#333333"/>
+                                        <TextBlock Text="Established" FontWeight="Medium" Foreground="#cccccc"/>
                                         <DatePicker SelectedDate="{Binding Established}"/>
                                     </StackPanel>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="Notes" FontWeight="Medium" Foreground="#333333"/>
+                                        <TextBlock Text="Notes" FontWeight="Medium" Foreground="#cccccc"/>
                                         <TextBox Text="{Binding Notes}" 
                                                 AcceptsReturn="True" 
                                                 TextWrapping="Wrap"
@@ -172,11 +160,10 @@
                 <TabItem Header="I&amp;M - Meters">
                     <Grid ColumnDefinitions="2*,3*" Margin="10">
                         <!-- Same layout as Ohio - Meters -->
-                        <Border Grid.Column="0" BorderBrush="#E0E0E0" BorderThickness="1" CornerRadius="4" Padding="5" Margin="0,0,10,0">
+                        <Border Grid.Column="0" BorderBrush="#3f3f46" BorderThickness="1" CornerRadius="4" Padding="5" Margin="0,0,10,0" Background="#2d2d30">
                             <DataGrid ItemsSource="{Binding Histories}"
                                      SelectedItem="{Binding SelectedHistory}"
                                      AutoGenerateColumns="False"
-                                     GridLinesVisibility="All"
                                      IsReadOnly="True"
                                      CanUserResizeColumns="True">
                                 <DataGrid.Columns>
@@ -194,13 +181,13 @@
                             </DataGrid>
                         </Border>
 
-                        <Border Grid.Column="1" BorderBrush="#E0E0E0" BorderThickness="1" CornerRadius="4" Padding="15">
+                        <Border Grid.Column="1" BorderBrush="#3f3f46" BorderThickness="1" CornerRadius="4" Padding="15" Background="#2d2d30">
                             <ScrollViewer VerticalScrollBarVisibility="Auto">
                                 <StackPanel Spacing="10">
-                                    <TextBlock Text="Record Details" FontSize="16" FontWeight="SemiBold" Foreground="#1a1a1a" Margin="0,0,0,10"/>
+                                    <TextBlock Text="Record Details" FontSize="16" FontWeight="SemiBold" Foreground="#ffffff" Margin="0,0,0,10"/>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="Status" FontWeight="Medium" Foreground="#333333"/>
+                                        <TextBlock Text="Status" FontWeight="Medium" Foreground="#cccccc"/>
                                         <ComboBox ItemsSource="{Binding Statuses}"
                                                  SelectedItem="{Binding SelectedStatus}"
                                                  DisplayMemberBinding="{Binding Code}"
@@ -208,7 +195,7 @@
                                     </StackPanel>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="Manufacturer" FontWeight="Medium" Foreground="#333333"/>
+                                        <TextBlock Text="Manufacturer" FontWeight="Medium" Foreground="#cccccc"/>
                                         <ComboBox ItemsSource="{Binding Manufacturers}"
                                                  SelectedItem="{Binding SelectedManufacturer}"
                                                  DisplayMemberBinding="{Binding Code}"
@@ -216,7 +203,7 @@
                                     </StackPanel>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="Device Code" FontWeight="Medium" Foreground="#333333"/>
+                                        <TextBlock Text="Device Code" FontWeight="Medium" Foreground="#cccccc"/>
                                         <ComboBox ItemsSource="{Binding DeviceCodes}"
                                                  SelectedItem="{Binding SelectedDevCode}"
                                                  DisplayMemberBinding="{Binding Code}"
@@ -224,59 +211,59 @@
                                     </StackPanel>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="Beginning Serial" FontWeight="Medium" Foreground="#333333"/>
+                                        <TextBlock Text="Beginning Serial" FontWeight="Medium" Foreground="#cccccc"/>
                                         <TextBox Text="{Binding BegSer}" Watermark="Enter beginning serial"/>
                                     </StackPanel>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="Ending Serial" FontWeight="Medium" Foreground="#333333"/>
+                                        <TextBlock Text="Ending Serial" FontWeight="Medium" Foreground="#cccccc"/>
                                         <TextBox Text="{Binding EndSer}" Watermark="Enter ending serial"/>
                                     </StackPanel>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="Out of Range (OOR)" FontWeight="Medium" Foreground="#333333"/>
+                                        <TextBlock Text="Out of Range (OOR)" FontWeight="Medium" Foreground="#cccccc"/>
                                         <TextBox Text="{Binding Oor}" 
                                                 Watermark="e.g., 10023-10033, 20023-20033"
                                                 AcceptsReturn="False"/>
                                     </StackPanel>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="Quantity" FontWeight="Medium" Foreground="#333333"/>
-                                        <TextBox Text="{Binding Qty}" IsReadOnly="True" Background="#F5F5F5"/>
+                                        <TextBlock Text="Quantity" FontWeight="Medium" Foreground="#cccccc"/>
+                                        <TextBox Text="{Binding Qty}" IsReadOnly="True" Background="#252526"/>
                                     </StackPanel>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="PO Date" FontWeight="Medium" Foreground="#333333"/>
+                                        <TextBlock Text="PO Date" FontWeight="Medium" Foreground="#cccccc"/>
                                         <DatePicker SelectedDate="{Binding PoDate}"/>
                                     </StackPanel>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="PO Number" FontWeight="Medium" Foreground="#333333"/>
+                                        <TextBlock Text="PO Number" FontWeight="Medium" Foreground="#cccccc"/>
                                         <TextBox Text="{Binding PoNumber}" Watermark="Enter PO number"/>
                                     </StackPanel>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="Received Date" FontWeight="Medium" Foreground="#333333"/>
+                                        <TextBlock Text="Received Date" FontWeight="Medium" Foreground="#cccccc"/>
                                         <DatePicker SelectedDate="{Binding RecvDate}"/>
                                     </StackPanel>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="Unit Cost" FontWeight="Medium" Foreground="#333333"/>
+                                        <TextBlock Text="Unit Cost" FontWeight="Medium" Foreground="#cccccc"/>
                                         <TextBox Text="{Binding UnitCost}" Watermark="0.00"/>
                                     </StackPanel>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="CID" FontWeight="Medium" Foreground="#333333"/>
+                                        <TextBlock Text="CID" FontWeight="Medium" Foreground="#cccccc"/>
                                         <TextBox Text="{Binding Cid}" Watermark="Enter CID"/>
                                     </StackPanel>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="M.E. Number" FontWeight="Medium" Foreground="#333333"/>
+                                        <TextBlock Text="M.E. Number" FontWeight="Medium" Foreground="#cccccc"/>
                                         <TextBox Text="{Binding MeNumber}" Watermark="Enter M.E. number"/>
                                     </StackPanel>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="Purchase Code" FontWeight="Medium" Foreground="#333333"/>
+                                        <TextBlock Text="Purchase Code" FontWeight="Medium" Foreground="#cccccc"/>
                                         <ComboBox ItemsSource="{Binding PurchaseCodes}"
                                                  SelectedItem="{Binding SelectedPurCode}"
                                                  DisplayMemberBinding="{Binding Code}"
@@ -284,12 +271,12 @@
                                     </StackPanel>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="Established" FontWeight="Medium" Foreground="#333333"/>
+                                        <TextBlock Text="Established" FontWeight="Medium" Foreground="#cccccc"/>
                                         <DatePicker SelectedDate="{Binding Established}"/>
                                     </StackPanel>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="Notes" FontWeight="Medium" Foreground="#333333"/>
+                                        <TextBlock Text="Notes" FontWeight="Medium" Foreground="#cccccc"/>
                                         <TextBox Text="{Binding Notes}" 
                                                 AcceptsReturn="True" 
                                                 TextWrapping="Wrap"
@@ -305,11 +292,10 @@
                 <!-- Ohio - Transformers -->
                 <TabItem Header="Ohio - Transformers">
                     <Grid ColumnDefinitions="2*,3*" Margin="10">
-                        <Border Grid.Column="0" BorderBrush="#E0E0E0" BorderThickness="1" CornerRadius="4" Padding="5" Margin="0,0,10,0">
+                        <Border Grid.Column="0" BorderBrush="#3f3f46" BorderThickness="1" CornerRadius="4" Padding="5" Margin="0,0,10,0" Background="#2d2d30">
                             <DataGrid ItemsSource="{Binding Histories}"
                                      SelectedItem="{Binding SelectedHistory}"
                                      AutoGenerateColumns="False"
-                                     GridLinesVisibility="All"
                                      IsReadOnly="True"
                                      CanUserResizeColumns="True">
                                 <DataGrid.Columns>
@@ -327,13 +313,13 @@
                             </DataGrid>
                         </Border>
 
-                        <Border Grid.Column="1" BorderBrush="#E0E0E0" BorderThickness="1" CornerRadius="4" Padding="15">
+                        <Border Grid.Column="1" BorderBrush="#3f3f46" BorderThickness="1" CornerRadius="4" Padding="15" Background="#2d2d30">
                             <ScrollViewer VerticalScrollBarVisibility="Auto">
                                 <StackPanel Spacing="10">
-                                    <TextBlock Text="Record Details" FontSize="16" FontWeight="SemiBold" Foreground="#1a1a1a" Margin="0,0,0,10"/>
+                                    <TextBlock Text="Record Details" FontSize="16" FontWeight="SemiBold" Foreground="#ffffff" Margin="0,0,0,10"/>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="Status" FontWeight="Medium" Foreground="#333333"/>
+                                        <TextBlock Text="Status" FontWeight="Medium" Foreground="#cccccc"/>
                                         <ComboBox ItemsSource="{Binding Statuses}"
                                                  SelectedItem="{Binding SelectedStatus}"
                                                  DisplayMemberBinding="{Binding Code}"
@@ -341,7 +327,7 @@
                                     </StackPanel>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="Manufacturer" FontWeight="Medium" Foreground="#333333"/>
+                                        <TextBlock Text="Manufacturer" FontWeight="Medium" Foreground="#cccccc"/>
                                         <ComboBox ItemsSource="{Binding Manufacturers}"
                                                  SelectedItem="{Binding SelectedManufacturer}"
                                                  DisplayMemberBinding="{Binding Code}"
@@ -349,7 +335,7 @@
                                     </StackPanel>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="Device Code" FontWeight="Medium" Foreground="#333333"/>
+                                        <TextBlock Text="Device Code" FontWeight="Medium" Foreground="#cccccc"/>
                                         <ComboBox ItemsSource="{Binding DeviceCodes}"
                                                  SelectedItem="{Binding SelectedDevCode}"
                                                  DisplayMemberBinding="{Binding Code}"
@@ -357,59 +343,59 @@
                                     </StackPanel>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="Beginning Serial" FontWeight="Medium" Foreground="#333333"/>
+                                        <TextBlock Text="Beginning Serial" FontWeight="Medium" Foreground="#cccccc"/>
                                         <TextBox Text="{Binding BegSer}" Watermark="Enter beginning serial"/>
                                     </StackPanel>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="Ending Serial" FontWeight="Medium" Foreground="#333333"/>
+                                        <TextBlock Text="Ending Serial" FontWeight="Medium" Foreground="#cccccc"/>
                                         <TextBox Text="{Binding EndSer}" Watermark="Enter ending serial"/>
                                     </StackPanel>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="Out of Range (OOR)" FontWeight="Medium" Foreground="#333333"/>
+                                        <TextBlock Text="Out of Range (OOR)" FontWeight="Medium" Foreground="#cccccc"/>
                                         <TextBox Text="{Binding Oor}" 
                                                 Watermark="e.g., 10023-10033, 20023-20033"
                                                 AcceptsReturn="False"/>
                                     </StackPanel>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="Quantity" FontWeight="Medium" Foreground="#333333"/>
-                                        <TextBox Text="{Binding Qty}" IsReadOnly="True" Background="#F5F5F5"/>
+                                        <TextBlock Text="Quantity" FontWeight="Medium" Foreground="#cccccc"/>
+                                        <TextBox Text="{Binding Qty}" IsReadOnly="True" Background="#252526"/>
                                     </StackPanel>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="PO Date" FontWeight="Medium" Foreground="#333333"/>
+                                        <TextBlock Text="PO Date" FontWeight="Medium" Foreground="#cccccc"/>
                                         <DatePicker SelectedDate="{Binding PoDate}"/>
                                     </StackPanel>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="PO Number" FontWeight="Medium" Foreground="#333333"/>
+                                        <TextBlock Text="PO Number" FontWeight="Medium" Foreground="#cccccc"/>
                                         <TextBox Text="{Binding PoNumber}" Watermark="Enter PO number"/>
                                     </StackPanel>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="Received Date" FontWeight="Medium" Foreground="#333333"/>
+                                        <TextBlock Text="Received Date" FontWeight="Medium" Foreground="#cccccc"/>
                                         <DatePicker SelectedDate="{Binding RecvDate}"/>
                                     </StackPanel>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="Unit Cost" FontWeight="Medium" Foreground="#333333"/>
+                                        <TextBlock Text="Unit Cost" FontWeight="Medium" Foreground="#cccccc"/>
                                         <TextBox Text="{Binding UnitCost}" Watermark="0.00"/>
                                     </StackPanel>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="CID" FontWeight="Medium" Foreground="#333333"/>
+                                        <TextBlock Text="CID" FontWeight="Medium" Foreground="#cccccc"/>
                                         <TextBox Text="{Binding Cid}" Watermark="Enter CID"/>
                                     </StackPanel>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="M.E. Number" FontWeight="Medium" Foreground="#333333"/>
+                                        <TextBlock Text="M.E. Number" FontWeight="Medium" Foreground="#cccccc"/>
                                         <TextBox Text="{Binding MeNumber}" Watermark="Enter M.E. number"/>
                                     </StackPanel>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="Purchase Code" FontWeight="Medium" Foreground="#333333"/>
+                                        <TextBlock Text="Purchase Code" FontWeight="Medium" Foreground="#cccccc"/>
                                         <ComboBox ItemsSource="{Binding PurchaseCodes}"
                                                  SelectedItem="{Binding SelectedPurCode}"
                                                  DisplayMemberBinding="{Binding Code}"
@@ -417,12 +403,12 @@
                                     </StackPanel>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="Established" FontWeight="Medium" Foreground="#333333"/>
+                                        <TextBlock Text="Established" FontWeight="Medium" Foreground="#cccccc"/>
                                         <DatePicker SelectedDate="{Binding Established}"/>
                                     </StackPanel>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="Notes" FontWeight="Medium" Foreground="#333333"/>
+                                        <TextBlock Text="Notes" FontWeight="Medium" Foreground="#cccccc"/>
                                         <TextBox Text="{Binding Notes}" 
                                                 AcceptsReturn="True" 
                                                 TextWrapping="Wrap"
@@ -438,11 +424,10 @@
                 <!-- I&M - Transformers -->
                 <TabItem Header="I&amp;M - Transformers">
                     <Grid ColumnDefinitions="2*,3*" Margin="10">
-                        <Border Grid.Column="0" BorderBrush="#E0E0E0" BorderThickness="1" CornerRadius="4" Padding="5" Margin="0,0,10,0">
+                        <Border Grid.Column="0" BorderBrush="#3f3f46" BorderThickness="1" CornerRadius="4" Padding="5" Margin="0,0,10,0" Background="#2d2d30">
                             <DataGrid ItemsSource="{Binding Histories}"
                                      SelectedItem="{Binding SelectedHistory}"
                                      AutoGenerateColumns="False"
-                                     GridLinesVisibility="All"
                                      IsReadOnly="True"
                                      CanUserResizeColumns="True">
                                 <DataGrid.Columns>
@@ -460,13 +445,13 @@
                             </DataGrid>
                         </Border>
 
-                        <Border Grid.Column="1" BorderBrush="#E0E0E0" BorderThickness="1" CornerRadius="4" Padding="15">
+                        <Border Grid.Column="1" BorderBrush="#3f3f46" BorderThickness="1" CornerRadius="4" Padding="15" Background="#2d2d30">
                             <ScrollViewer VerticalScrollBarVisibility="Auto">
                                 <StackPanel Spacing="10">
-                                    <TextBlock Text="Record Details" FontSize="16" FontWeight="SemiBold" Foreground="#1a1a1a" Margin="0,0,0,10"/>
+                                    <TextBlock Text="Record Details" FontSize="16" FontWeight="SemiBold" Foreground="#ffffff" Margin="0,0,0,10"/>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="Status" FontWeight="Medium" Foreground="#333333"/>
+                                        <TextBlock Text="Status" FontWeight="Medium" Foreground="#cccccc"/>
                                         <ComboBox ItemsSource="{Binding Statuses}"
                                                  SelectedItem="{Binding SelectedStatus}"
                                                  DisplayMemberBinding="{Binding Code}"
@@ -474,7 +459,7 @@
                                     </StackPanel>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="Manufacturer" FontWeight="Medium" Foreground="#333333"/>
+                                        <TextBlock Text="Manufacturer" FontWeight="Medium" Foreground="#cccccc"/>
                                         <ComboBox ItemsSource="{Binding Manufacturers}"
                                                  SelectedItem="{Binding SelectedManufacturer}"
                                                  DisplayMemberBinding="{Binding Code}"
@@ -482,7 +467,7 @@
                                     </StackPanel>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="Device Code" FontWeight="Medium" Foreground="#333333"/>
+                                        <TextBlock Text="Device Code" FontWeight="Medium" Foreground="#cccccc"/>
                                         <ComboBox ItemsSource="{Binding DeviceCodes}"
                                                  SelectedItem="{Binding SelectedDevCode}"
                                                  DisplayMemberBinding="{Binding Code}"
@@ -490,59 +475,59 @@
                                     </StackPanel>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="Beginning Serial" FontWeight="Medium" Foreground="#333333"/>
+                                        <TextBlock Text="Beginning Serial" FontWeight="Medium" Foreground="#cccccc"/>
                                         <TextBox Text="{Binding BegSer}" Watermark="Enter beginning serial"/>
                                     </StackPanel>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="Ending Serial" FontWeight="Medium" Foreground="#333333"/>
+                                        <TextBlock Text="Ending Serial" FontWeight="Medium" Foreground="#cccccc"/>
                                         <TextBox Text="{Binding EndSer}" Watermark="Enter ending serial"/>
                                     </StackPanel>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="Out of Range (OOR)" FontWeight="Medium" Foreground="#333333"/>
+                                        <TextBlock Text="Out of Range (OOR)" FontWeight="Medium" Foreground="#cccccc"/>
                                         <TextBox Text="{Binding Oor}" 
                                                 Watermark="e.g., 10023-10033, 20023-20033"
                                                 AcceptsReturn="False"/>
                                     </StackPanel>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="Quantity" FontWeight="Medium" Foreground="#333333"/>
-                                        <TextBox Text="{Binding Qty}" IsReadOnly="True" Background="#F5F5F5"/>
+                                        <TextBlock Text="Quantity" FontWeight="Medium" Foreground="#cccccc"/>
+                                        <TextBox Text="{Binding Qty}" IsReadOnly="True" Background="#252526"/>
                                     </StackPanel>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="PO Date" FontWeight="Medium" Foreground="#333333"/>
+                                        <TextBlock Text="PO Date" FontWeight="Medium" Foreground="#cccccc"/>
                                         <DatePicker SelectedDate="{Binding PoDate}"/>
                                     </StackPanel>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="PO Number" FontWeight="Medium" Foreground="#333333"/>
+                                        <TextBlock Text="PO Number" FontWeight="Medium" Foreground="#cccccc"/>
                                         <TextBox Text="{Binding PoNumber}" Watermark="Enter PO number"/>
                                     </StackPanel>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="Received Date" FontWeight="Medium" Foreground="#333333"/>
+                                        <TextBlock Text="Received Date" FontWeight="Medium" Foreground="#cccccc"/>
                                         <DatePicker SelectedDate="{Binding RecvDate}"/>
                                     </StackPanel>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="Unit Cost" FontWeight="Medium" Foreground="#333333"/>
+                                        <TextBlock Text="Unit Cost" FontWeight="Medium" Foreground="#cccccc"/>
                                         <TextBox Text="{Binding UnitCost}" Watermark="0.00"/>
                                     </StackPanel>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="CID" FontWeight="Medium" Foreground="#333333"/>
+                                        <TextBlock Text="CID" FontWeight="Medium" Foreground="#cccccc"/>
                                         <TextBox Text="{Binding Cid}" Watermark="Enter CID"/>
                                     </StackPanel>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="M.E. Number" FontWeight="Medium" Foreground="#333333"/>
+                                        <TextBlock Text="M.E. Number" FontWeight="Medium" Foreground="#cccccc"/>
                                         <TextBox Text="{Binding MeNumber}" Watermark="Enter M.E. number"/>
                                     </StackPanel>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="Purchase Code" FontWeight="Medium" Foreground="#333333"/>
+                                        <TextBlock Text="Purchase Code" FontWeight="Medium" Foreground="#cccccc"/>
                                         <ComboBox ItemsSource="{Binding PurchaseCodes}"
                                                  SelectedItem="{Binding SelectedPurCode}"
                                                  DisplayMemberBinding="{Binding Code}"
@@ -550,12 +535,12 @@
                                     </StackPanel>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="Established" FontWeight="Medium" Foreground="#333333"/>
+                                        <TextBlock Text="Established" FontWeight="Medium" Foreground="#cccccc"/>
                                         <DatePicker SelectedDate="{Binding Established}"/>
                                     </StackPanel>
 
                                     <StackPanel Spacing="5">
-                                        <TextBlock Text="Notes" FontWeight="Medium" Foreground="#333333"/>
+                                        <TextBlock Text="Notes" FontWeight="Medium" Foreground="#cccccc"/>
                                         <TextBox Text="{Binding Notes}" 
                                                 AcceptsReturn="True" 
                                                 TextWrapping="Wrap"
@@ -571,20 +556,12 @@
         </Grid>
 
         <!-- Button Bar -->
-        <Border Grid.Row="2" BorderBrush="#E0E0E0" BorderThickness="0,1,0,0" Padding="20,10">
-            <Grid ColumnDefinitions="*,*">
-                <StackPanel Grid.Column="0" Orientation="Horizontal" Spacing="10">
-                    <Button Content="Add New" Command="{Binding AddNewCommand}" Padding="15,8"/>
-                    <Button Content="Save" Command="{Binding SaveCommand}" Padding="15,8"/>
-                    <Button Content="Delete" Command="{Binding DeleteCommand}" Padding="15,8"/>
-                </StackPanel>
-
-                <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="10" HorizontalAlignment="Right">
-                    <TextBox Text="{Binding SearchText}" Watermark="Search..." Width="200"/>
-                    <Button Content="Export CSV" Command="{Binding ExportCsvCommand}" Padding="15,8"/>
-                </StackPanel>
-            </Grid>
-        </Border>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Spacing="10">
+            <Button Content="Add New" Command="{Binding AddNewCommand}"/>
+            <Button Content="Save" Command="{Binding SaveCommand}" Background="#107c10"/>
+            <Button Content="Delete" Command="{Binding DeleteCommand}" Background="#d13438"/>
+            <Button Content="Export CSV" Command="{Binding ExportCsvCommand}" Background="#505050"/>
+        </StackPanel>
     </Grid>
     
 </UserControl>

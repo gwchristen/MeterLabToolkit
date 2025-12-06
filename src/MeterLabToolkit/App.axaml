@@ -2,8 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Class="MeterLabToolkit.App"
              xmlns:local="using:MeterLabToolkit"
-             RequestedThemeVariant="Default">
-             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+             RequestedThemeVariant="Dark">
 
     <Application.DataTemplates>
         <local:ViewLocator/>
@@ -11,5 +10,143 @@
   
     <Application.Styles>
         <FluentTheme />
+        
+        <!-- Global Dark Theme Overrides -->
+        <Style Selector="Window">
+            <Setter Property="Background" Value="#1e1e1e"/>
+        </Style>
+        
+        <Style Selector="UserControl">
+            <Setter Property="Background" Value="#252526"/>
+        </Style>
+        
+        <!-- DataGrid Global Styling -->
+        <Style Selector="DataGrid">
+            <Setter Property="Background" Value="#1e1e1e"/>
+            <Setter Property="RowBackground" Value="#2d2d30"/>
+            <Setter Property="BorderBrush" Value="#3f3f46"/>
+            <Setter Property="GridLinesVisibility" Value="All"/>
+            <Setter Property="HorizontalGridLinesBrush" Value="#3f3f46"/>
+            <Setter Property="VerticalGridLinesBrush" Value="#3f3f46"/>
+        </Style>
+        
+        <Style Selector="DataGridColumnHeader">
+            <Setter Property="Background" Value="#3c3c3c"/>
+            <Setter Property="Foreground" Value="#ffffff"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Padding" Value="12,8"/>
+            <Setter Property="BorderBrush" Value="#4f4f4f"/>
+            <Setter Property="BorderThickness" Value="0,0,1,1"/>
+        </Style>
+        
+        <Style Selector="DataGridRow">
+            <Setter Property="Foreground" Value="#e0e0e0"/>
+        </Style>
+        
+        <Style Selector="DataGridRow:pointerover /template/ Rectangle#BackgroundRectangle">
+            <Setter Property="Fill" Value="#3a3a3a"/>
+        </Style>
+        
+        <Style Selector="DataGridRow:selected /template/ Rectangle#BackgroundRectangle">
+            <Setter Property="Fill" Value="#0078d4"/>
+        </Style>
+        
+        <Style Selector="DataGridCell">
+            <Setter Property="Foreground" Value="#e0e0e0"/>
+            <Setter Property="Padding" Value="12,8"/>
+        </Style>
+        
+        <Style Selector="DataGridCell TextBlock">
+            <Setter Property="Foreground" Value="#e0e0e0"/>
+        </Style>
+        
+        <Style Selector="DataGridCell TextBox">
+            <Setter Property="Foreground" Value="#ffffff"/>
+            <Setter Property="Background" Value="#3c3c3c"/>
+            <Setter Property="CaretBrush" Value="#ffffff"/>
+        </Style>
+        
+        <!-- TextBlock defaults -->
+        <Style Selector="TextBlock">
+            <Setter Property="Foreground" Value="#e0e0e0"/>
+        </Style>
+        
+        <!-- TextBox styling -->
+        <Style Selector="TextBox">
+            <Setter Property="Background" Value="#3c3c3c"/>
+            <Setter Property="Foreground" Value="#ffffff"/>
+            <Setter Property="BorderBrush" Value="#4f4f4f"/>
+            <Setter Property="CaretBrush" Value="#ffffff"/>
+        </Style>
+        
+        <Style Selector="TextBox:focus">
+            <Setter Property="BorderBrush" Value="#0078d4"/>
+        </Style>
+        
+        <!-- ComboBox styling -->
+        <Style Selector="ComboBox">
+            <Setter Property="Background" Value="#3c3c3c"/>
+            <Setter Property="Foreground" Value="#ffffff"/>
+            <Setter Property="BorderBrush" Value="#4f4f4f"/>
+        </Style>
+        
+        <!-- Button styling -->
+        <Style Selector="Button">
+            <Setter Property="Background" Value="#0078d4"/>
+            <Setter Property="Foreground" Value="#ffffff"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="16,8"/>
+            <Setter Property="CornerRadius" Value="4"/>
+        </Style>
+        
+        <Style Selector="Button:pointerover">
+            <Setter Property="Background" Value="#1084d8"/>
+        </Style>
+        
+        <Style Selector="Button:pressed">
+            <Setter Property="Background" Value="#006cc1"/>
+        </Style>
+        
+        <!-- Expander styling for navigation -->
+        <Style Selector="Expander">
+            <Setter Property="Background" Value="#2d2d30"/>
+            <Setter Property="Foreground" Value="#ffffff"/>
+            <Setter Property="BorderBrush" Value="#3f3f46"/>
+        </Style>
+        
+        <!-- Border defaults -->
+        <Style Selector="Border.card">
+            <Setter Property="Background" Value="#2d2d30"/>
+            <Setter Property="BorderBrush" Value="#3f3f46"/>
+            <Setter Property="CornerRadius" Value="4"/>
+        </Style>
+        
+        <!-- TabControl styling -->
+        <Style Selector="TabControl">
+            <Setter Property="Background" Value="Transparent"/>
+        </Style>
+        
+        <Style Selector="TabItem">
+            <Setter Property="Background" Value="#2d2d30"/>
+            <Setter Property="Foreground" Value="#cccccc"/>
+            <Setter Property="Padding" Value="16,8"/>
+        </Style>
+        
+        <Style Selector="TabItem:selected">
+            <Setter Property="Background" Value="#0078d4"/>
+            <Setter Property="Foreground" Value="#ffffff"/>
+        </Style>
+        
+        <!-- DatePicker styling -->
+        <Style Selector="CalendarDatePicker">
+            <Setter Property="Background" Value="#3c3c3c"/>
+            <Setter Property="Foreground" Value="#ffffff"/>
+            <Setter Property="BorderBrush" Value="#4f4f4f"/>
+        </Style>
+        
+        <!-- ScrollViewer -->
+        <Style Selector="ScrollViewer">
+            <Setter Property="Background" Value="Transparent"/>
+        </Style>
     </Application.Styles>
 </Application>
