@@ -329,6 +329,13 @@ public partial class CreatedHistoriesViewModel : ViewModelBase
 
     private void ClearForm()
     {
+        ClearFormFields();
+        StatusMessage = null;
+        IsError = false;
+    }
+
+    private void ClearFormFields()
+    {
         SelectedStatus = null;
         SelectedManufacturer = null;
         SelectedDevCode = null;
@@ -345,8 +352,6 @@ public partial class CreatedHistoriesViewModel : ViewModelBase
         SelectedPurCode = null;
         Established = DateTimeOffset.Now;
         Notes = string.Empty;
-        StatusMessage = null;
-        IsError = false;
     }
 
     [RelayCommand]
@@ -397,7 +402,7 @@ public partial class CreatedHistoriesViewModel : ViewModelBase
             
             IsError = false;
             await LoadHistoriesAsync();
-            ClearForm();
+            ClearFormFields();
         }
         catch (Exception ex)
         {
