@@ -18,10 +18,10 @@
         <!-- Main content area with navigation -->
         <Grid Grid.Row="0" ColumnDefinitions="250,*">
             <!-- Left Navigation Panel -->
-            <Border Grid.Column="0" Background="#F5F5F5" BorderBrush="#E0E0E0" BorderThickness="0,0,1,0">
+            <Border Grid.Column="0" Background="#252526" BorderBrush="#3f3f46" BorderThickness="0,0,1,0">
                 <ScrollViewer>
                     <StackPanel Margin="10">
-                        <TextBlock Text="MeterLab Toolkit" FontSize="18" FontWeight="Bold" Margin="0,0,0,20"/>
+                        <TextBlock Text="MeterLab Toolkit" FontSize="20" FontWeight="Bold" Foreground="#ffffff" Margin="0,0,0,20"/>
                         
                         <!-- Data Entry Section -->
                         <Expander Header="Data Entry" IsExpanded="True" Margin="0,0,0,10">
@@ -123,7 +123,7 @@
             </Border>
 
             <!-- Main Content Area -->
-            <Border Grid.Column="1" Background="White" Padding="20">
+            <Border Grid.Column="1" Background="#1e1e1e" Padding="20">
                 <ContentControl Content="{Binding CurrentView}"/>
             </Border>
         </Grid>
@@ -132,21 +132,21 @@
         <GridSplitter Grid.Row="1" 
                       Height="5" 
                       HorizontalAlignment="Stretch"
-                      Background="#E0E0E0"
+                      Background="#3f3f46"
                       IsVisible="{Binding IsBottomPanelVisible}"/>
 
         <!-- Collapsible Bottom Panel -->
         <Border Grid.Row="2" 
-                Background="#F9F9F9" 
-                BorderBrush="#E0E0E0" 
+                Background="#252526" 
+                BorderBrush="#3f3f46" 
                 BorderThickness="0,1,0,0"
                 MinHeight="100"
                 MaxHeight="300"
                 IsVisible="{Binding IsBottomPanelVisible}">
             <Grid RowDefinitions="Auto,*">
-                <Border Grid.Row="0" Background="#E8E8E8" Padding="10,5">
+                <Border Grid.Row="0" Background="#2d2d30" Padding="10,5">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Quick Tools" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                        <TextBlock Text="Quick Tools" FontWeight="SemiBold" Foreground="#ffffff" VerticalAlignment="Center"/>
                         <Button Content="×" 
                                 Command="{Binding ToggleBottomPanelCommand}"
                                 Margin="10,0,0,0"
@@ -158,6 +158,7 @@
                            Text="Tools can be pinned here for quick access" 
                            HorizontalAlignment="Center" 
                            VerticalAlignment="Center"
+                           Foreground="#999999"
                            Opacity="0.5"/>
             </Grid>
         </Border>

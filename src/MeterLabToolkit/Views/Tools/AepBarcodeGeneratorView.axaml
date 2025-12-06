@@ -6,21 +6,21 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="MeterLabToolkit.Views.Tools.AepBarcodeGeneratorView"
              x:DataType="vm:AepBarcodeGeneratorViewModel">
-    
+     
     <Design.DataContext>
         <vm:AepBarcodeGeneratorViewModel/>
     </Design.DataContext>
 
     <StackPanel>
-        <TextBlock Text="AEP Barcode Generator" FontSize="24" FontWeight="Bold" Foreground="#1a1a1a" Margin="0,0,0,20"/>
-        <TextBlock Text="Generate AEP barcodes for meters and devices" Foreground="#333333" Opacity="0.7" Margin="0,0,0,20"/>
+        <TextBlock Text="AEP Barcode Generator" FontSize="24" FontWeight="Bold" Foreground="#ffffff" Margin="0,0,0,20"/>
+        <TextBlock Text="Generate AEP barcodes for devices" Foreground="#999999" Margin="0,0,0,20"/>
         
-        <Border Background="#F5F5F5" Padding="20" CornerRadius="4">
+        <Border Background="#2d2d30" BorderBrush="#3f3f46" BorderThickness="1" Padding="20" CornerRadius="4">
             <TextBlock Text="Tool interface will be implemented here" 
                        HorizontalAlignment="Center" 
                        VerticalAlignment="Center"
-                       Foreground="#333333"
-                       Opacity="0.5"/>
+                       Foreground="#999999"
+                       Opacity="0.7"/>
         </Border>
     </StackPanel>
     
