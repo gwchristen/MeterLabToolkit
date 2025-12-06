@@ -345,6 +345,8 @@ public partial class CreatedHistoriesViewModel : ViewModelBase
         SelectedPurCode = null;
         Established = DateTimeOffset.Now;
         Notes = string.Empty;
+        StatusMessage = null;
+        IsError = false;
     }
 
     [RelayCommand]
