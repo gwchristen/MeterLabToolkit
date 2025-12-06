@@ -11,44 +11,46 @@
         <vm:LookupCodeTableViewModel/>
     </Design.DataContext>
 
-    <Grid RowDefinitions="Auto,Auto,*,Auto">
+    <Grid RowDefinitions="Auto,Auto,*,Auto" Margin="20">
         <!-- Header -->
         <StackPanel Grid.Row="0" Margin="0,0,0,10">
             <TextBlock Text="Lookup Codes" FontSize="24" FontWeight="Bold" Foreground="#ffffff"/>
             <TextBlock Text="Manage lookup code reference data" Foreground="#999999" Margin="0,5,0,0"/>
         </StackPanel>
         
-        <!-- Status/Error Message -->
-        <TextBlock Grid.Row="1" 
-                   Text="{Binding ErrorMessage}" 
-                   Foreground="#d13438"
-                   IsVisible="{Binding ErrorMessage, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
-                   Margin="0,0,0,10"/>
-        
-        <!-- Record Count -->
-        <TextBlock Grid.Row="1"
-                   Text="{Binding Items.Count, StringFormat='Records: {0}'}"
-                   Foreground="#999999"
-                   HorizontalAlignment="Right"
-                   Margin="0,0,0,10"/>
+        <!-- Status/Error Message and Record Count -->
+        <Grid Grid.Row="1" Margin="0,0,0,10">
+            <TextBlock Text="{Binding ErrorMessage}" 
+                       Foreground="#d13438"
+                       IsVisible="{Binding ErrorMessage, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+            <TextBlock Text="{Binding Items.Count, StringFormat='Records: {0}'}"
+                       Foreground="#999999"
+                       HorizontalAlignment="Right"/>
+        </Grid>
 
-        <!-- DataGrid - uses global styles -->
-        <DataGrid Grid.Row="2" 
-                  ItemsSource="{Binding Items}"
-                  SelectedItem="{Binding SelectedItem}"
-                  AutoGenerateColumns="False"
-                  IsReadOnly="False"
-                  CanUserResizeColumns="True"
-                  CanUserSortColumns="True"
-                  Background="#1e1e1e"
-                  RowBackground="#2d2d30"
-                  Foreground="#e0e0e0"
-                  GridLinesVisibility="All"
-                  HorizontalGridLinesBrush="#3f3f46"
-                  VerticalGridLinesBrush="#3f3f46"
-                  BorderBrush="#3f3f46"
-                  BorderThickness="1"
-                  Margin="0,0,0,10">
+        <!-- DataGrid with explicit sizing -->
+        <Border Grid.Row="2" 
+                Background="#1e1e1e" 
+                BorderBrush="#3f3f46" 
+                BorderThickness="1"
+                CornerRadius="4"
+                Margin="0,0,0,10"
+                MinHeight="200">
+            <DataGrid ItemsSource="{Binding Items}"
+                      SelectedItem="{Binding SelectedItem}"
+                      AutoGenerateColumns="False"
+                      IsReadOnly="False"
+                      CanUserResizeColumns="True"
+                      CanUserSortColumns="True"
+                      Background="#1e1e1e"
+                      RowBackground="#2d2d30"
+                      Foreground="#e0e0e0"
+                      GridLinesVisibility="All"
+                      HorizontalGridLinesBrush="#3f3f46"
+                      VerticalGridLinesBrush="#3f3f46"
+                      HeadersVisibility="Column"
+                      HorizontalScrollBarVisibility="Auto"
+                      VerticalScrollBarVisibility="Auto">
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="Code" Width="200">
                     <DataGridTemplateColumn.CellTemplate>
@@ -85,7 +87,8 @@
                     </DataGridTemplateColumn.CellEditingTemplate>
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
-        </DataGrid>
+            </DataGrid>
+        </Border>
 
         <!-- Action Buttons -->
         <StackPanel Grid.Row="3" Orientation="Horizontal" Spacing="10">
