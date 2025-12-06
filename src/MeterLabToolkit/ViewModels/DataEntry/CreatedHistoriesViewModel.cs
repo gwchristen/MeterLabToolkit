@@ -68,13 +68,13 @@ public partial class CreatedHistoriesViewModel : ViewModelBase
     private int _qty;
 
     [ObservableProperty]
-    private DateTime _poDate = DateTime.Now;
+    private DateTimeOffset? _poDate = DateTimeOffset.Now;
 
     [ObservableProperty]
     private string _poNumber = string.Empty;
 
     [ObservableProperty]
-    private DateTime _recvDate = DateTime.Now;
+    private DateTimeOffset? _recvDate = DateTimeOffset.Now;
 
     [ObservableProperty]
     private decimal _unitCost;
@@ -89,7 +89,7 @@ public partial class CreatedHistoriesViewModel : ViewModelBase
     private PurchaseCode? _selectedPurCode;
 
     [ObservableProperty]
-    private DateTime _established = DateTime.Now;
+    private DateTimeOffset? _established = DateTimeOffset.Now;
 
     [ObservableProperty]
     private string _notes = string.Empty;
@@ -220,14 +220,14 @@ public partial class CreatedHistoriesViewModel : ViewModelBase
         EndSer = history.EndSer ?? string.Empty;
         Oor = history.OOR ?? string.Empty;
         Qty = history.Qty;
-        PoDate = history.PODate;
+        PoDate = new DateTimeOffset(history.PODate);
         PoNumber = history.PONumber;
-        RecvDate = history.RecvDate;
+        RecvDate = new DateTimeOffset(history.RecvDate);
         UnitCost = history.UnitCost;
         Cid = history.CID;
         MeNumber = history.MENumber;
         SelectedPurCode = PurchaseCodes.FirstOrDefault(p => p.Code == history.PurCode);
-        Established = history.Established;
+        Established = new DateTimeOffset(history.Established);
         Notes = history.Notes ?? string.Empty;
     }
 
@@ -329,14 +329,14 @@ public partial class CreatedHistoriesViewModel : ViewModelBase
         EndSer = string.Empty;
         Oor = string.Empty;
         Qty = 0;
-        PoDate = DateTime.Now;
+        PoDate = DateTimeOffset.Now;
         PoNumber = string.Empty;
-        RecvDate = DateTime.Now;
+        RecvDate = DateTimeOffset.Now;
         UnitCost = 0;
         Cid = string.Empty;
         MeNumber = string.Empty;
         SelectedPurCode = null;
-        Established = DateTime.Now;
+        Established = DateTimeOffset.Now;
         Notes = string.Empty;
     }
 
@@ -361,14 +361,14 @@ public partial class CreatedHistoriesViewModel : ViewModelBase
         history.EndSer = string.IsNullOrWhiteSpace(EndSer) ? null : EndSer;
         history.OOR = string.IsNullOrWhiteSpace(Oor) ? null : Oor;
         history.Qty = Qty;
-        history.PODate = PoDate;
+        history.PODate = PoDate?.DateTime ?? DateTime.Now;
         history.PONumber = PoNumber;
-        history.RecvDate = RecvDate;
+        history.RecvDate = RecvDate?.DateTime ?? DateTime.Now;
         history.UnitCost = UnitCost;
         history.CID = Cid;
         history.MENumber = MeNumber;
         history.PurCode = SelectedPurCode?.Code ?? string.Empty;
-        history.Established = Established;
+        history.Established = Established?.DateTime ?? DateTime.Now;
         history.Notes = string.IsNullOrWhiteSpace(Notes) ? null : Notes;
 
         if (SelectedHistory == null)
@@ -395,6 +395,12 @@ public partial class CreatedHistoriesViewModel : ViewModelBase
 
         if (string.IsNullOrWhiteSpace(PoNumber) || string.IsNullOrWhiteSpace(Cid) || 
             string.IsNullOrWhiteSpace(MeNumber))
+        {
+            return false;
+        }
+
+        // Date validation
+        if (!PoDate.HasValue || !RecvDate.HasValue || !Established.HasValue)
         {
             return false;
         }
