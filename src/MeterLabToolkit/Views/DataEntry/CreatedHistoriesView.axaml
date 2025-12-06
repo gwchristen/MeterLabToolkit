@@ -82,10 +82,10 @@
                                                     <TextBlock Grid.Column="3" Text="{Binding OOR}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
                                                     <TextBlock Grid.Column="4" Text="{Binding Qty}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
                                                     <TextBlock Grid.Column="5" Text="{Binding PONumber}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
-                                                    <TextBlock Grid.Column="6" Text="{Binding RecvDate, StringFormat='{}{0:MM/dd/yy}'}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="6" Text="{Binding RecvDate, StringFormat='{}{0:MM/dd/yyyy}'}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
                                                     <TextBlock Grid.Column="7" Text="{Binding CID}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
                                                     <TextBlock Grid.Column="8" Text="{Binding MENumber}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
-                                                    <TextBlock Grid.Column="9" Text="{Binding Established, StringFormat='{}{0:MM/dd/yy}'}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="9" Text="{Binding Established, StringFormat='{}{0:MM/dd/yyyy}'}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
                                                 </Grid>
                                             </Border>
                                         </DataTemplate>
@@ -270,10 +270,10 @@
                                                     <TextBlock Grid.Column="3" Text="{Binding OOR}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
                                                     <TextBlock Grid.Column="4" Text="{Binding Qty}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
                                                     <TextBlock Grid.Column="5" Text="{Binding PONumber}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
-                                                    <TextBlock Grid.Column="6" Text="{Binding RecvDate, StringFormat='{}{0:MM/dd/yy}'}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="6" Text="{Binding RecvDate, StringFormat='{}{0:MM/dd/yyyy}'}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
                                                     <TextBlock Grid.Column="7" Text="{Binding CID}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
                                                     <TextBlock Grid.Column="8" Text="{Binding MENumber}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
-                                                    <TextBlock Grid.Column="9" Text="{Binding Established, StringFormat='{}{0:MM/dd/yy}'}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="9" Text="{Binding Established, StringFormat='{}{0:MM/dd/yyyy}'}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
                                                 </Grid>
                                             </Border>
                                         </DataTemplate>
@@ -457,10 +457,10 @@
                                                     <TextBlock Grid.Column="3" Text="{Binding OOR}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
                                                     <TextBlock Grid.Column="4" Text="{Binding Qty}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
                                                     <TextBlock Grid.Column="5" Text="{Binding PONumber}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
-                                                    <TextBlock Grid.Column="6" Text="{Binding RecvDate, StringFormat='{}{0:MM/dd/yy}'}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="6" Text="{Binding RecvDate, StringFormat='{}{0:MM/dd/yyyy}'}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
                                                     <TextBlock Grid.Column="7" Text="{Binding CID}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
                                                     <TextBlock Grid.Column="8" Text="{Binding MENumber}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
-                                                    <TextBlock Grid.Column="9" Text="{Binding Established, StringFormat='{}{0:MM/dd/yy}'}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="9" Text="{Binding Established, StringFormat='{}{0:MM/dd/yyyy}'}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
                                                 </Grid>
                                             </Border>
                                         </DataTemplate>
@@ -644,10 +644,10 @@
                                                     <TextBlock Grid.Column="3" Text="{Binding OOR}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
                                                     <TextBlock Grid.Column="4" Text="{Binding Qty}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
                                                     <TextBlock Grid.Column="5" Text="{Binding PONumber}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
-                                                    <TextBlock Grid.Column="6" Text="{Binding RecvDate, StringFormat='{}{0:MM/dd/yy}'}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="6" Text="{Binding RecvDate, StringFormat='{}{0:MM/dd/yyyy}'}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
                                                     <TextBlock Grid.Column="7" Text="{Binding CID}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
                                                     <TextBlock Grid.Column="8" Text="{Binding MENumber}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
-                                                    <TextBlock Grid.Column="9" Text="{Binding Established, StringFormat='{}{0:MM/dd/yy}'}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="9" Text="{Binding Established, StringFormat='{}{0:MM/dd/yyyy}'}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
                                                 </Grid>
                                             </Border>
                                         </DataTemplate>
