@@ -25,26 +25,73 @@
                 <!-- Ohio - Meters -->
                 <TabItem Header="Ohio - Meters">
                     <Grid ColumnDefinitions="2*,3*" Margin="10">
-                        <!-- Left: DataGrid -->
-                        <Border Grid.Column="0" BorderBrush="#3f3f46" BorderThickness="1" CornerRadius="4" Padding="5" Margin="0,0,10,0" Background="#2d2d30">
-                            <DataGrid ItemsSource="{Binding Histories}"
-                                     SelectedItem="{Binding SelectedHistory}"
-                                     AutoGenerateColumns="False"
-                                     IsReadOnly="True"
-                                     CanUserResizeColumns="True">
-                                <DataGrid.Columns>
-                                    <DataGridTextColumn Header="DevCode" Binding="{Binding DevCode}" Width="100"/>
-                                    <DataGridTextColumn Header="BegSer" Binding="{Binding BegSer}" Width="100"/>
-                                    <DataGridTextColumn Header="EndSer" Binding="{Binding EndSer}" Width="100"/>
-                                    <DataGridTextColumn Header="OOR" Binding="{Binding OOR}" Width="120"/>
-                                    <DataGridTextColumn Header="Qty" Binding="{Binding Qty}" Width="60"/>
-                                    <DataGridTextColumn Header="PONumber" Binding="{Binding PONumber}" Width="100"/>
-                                    <DataGridTextColumn Header="RecvDate" Binding="{Binding RecvDate, StringFormat='{}{0:MM/dd/yyyy}'}" Width="100"/>
-                                    <DataGridTextColumn Header="CID" Binding="{Binding CID}" Width="80"/>
-                                    <DataGridTextColumn Header="MENumber" Binding="{Binding MENumber}" Width="100"/>
-                                    <DataGridTextColumn Header="Established" Binding="{Binding Established, StringFormat='{}{0:MM/dd/yyyy}'}" Width="100"/>
-                                </DataGrid.Columns>
-                            </DataGrid>
+                        <!-- Left: ListBox-based table -->
+                        <Border Grid.Column="0" BorderBrush="#3f3f46" BorderThickness="1" CornerRadius="4" Margin="0,0,10,0" Background="#2d2d30">
+                            <Grid RowDefinitions="Auto,Auto,*">
+                                <!-- Record Count -->
+                                <TextBlock Grid.Row="0" Text="{Binding Histories.Count, StringFormat='Records: {0}'}"
+                                           Foreground="#999999"
+                                           HorizontalAlignment="Right"
+                                           Margin="0,5,10,5"/>
+                                
+                                <!-- Column Headers -->
+                                <Border Grid.Row="1" Background="#3c3c3c" Padding="8">
+                                    <Grid ColumnDefinitions="80,80,80,100,50,80,80,60,80,80">
+                                        <TextBlock Grid.Column="0" Text="DevCode" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
+                                        <TextBlock Grid.Column="1" Text="BegSer" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
+                                        <TextBlock Grid.Column="2" Text="EndSer" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
+                                        <TextBlock Grid.Column="3" Text="OOR" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
+                                        <TextBlock Grid.Column="4" Text="Qty" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
+                                        <TextBlock Grid.Column="5" Text="PONumber" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
+                                        <TextBlock Grid.Column="6" Text="RecvDate" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
+                                        <TextBlock Grid.Column="7" Text="CID" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
+                                        <TextBlock Grid.Column="8" Text="MENumber" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
+                                        <TextBlock Grid.Column="9" Text="Established" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
+                                    </Grid>
+                                </Border>
+                                
+                                <!-- Data Rows -->
+                                <ListBox Grid.Row="2"
+                                         ItemsSource="{Binding Histories}"
+                                         SelectedItem="{Binding SelectedHistory}"
+                                         Background="Transparent"
+                                         BorderThickness="0">
+                                    <ListBox.Styles>
+                                        <Style Selector="ListBoxItem">
+                                            <Setter Property="Padding" Value="0"/>
+                                            <Setter Property="Margin" Value="0"/>
+                                            <Setter Property="Background" Value="#2d2d30"/>
+                                        </Style>
+                                        <Style Selector="ListBoxItem:nth-child(even)">
+                                            <Setter Property="Background" Value="#252526"/>
+                                        </Style>
+                                        <Style Selector="ListBoxItem:selected">
+                                            <Setter Property="Background" Value="#0078d4"/>
+                                        </Style>
+                                        <Style Selector="ListBoxItem:pointerover">
+                                            <Setter Property="Background" Value="#3a3a3a"/>
+                                        </Style>
+                                    </ListBox.Styles>
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border BorderBrush="#3f3f46" BorderThickness="0,0,0,1" Padding="8,6">
+                                                <Grid ColumnDefinitions="80,80,80,100,50,80,80,60,80,80">
+                                                    <TextBlock Grid.Column="0" Text="{Binding DevCode}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="1" Text="{Binding BegSer}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="2" Text="{Binding EndSer}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="3" Text="{Binding OOR}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
+                                                    <TextBlock Grid.Column="4" Text="{Binding Qty}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="5" Text="{Binding PONumber}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="6" Text="{Binding RecvDate, StringFormat='{}{0:MM/dd/yyyy}'}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="7" Text="{Binding CID}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="8" Text="{Binding MENumber}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="9" Text="{Binding Established, StringFormat='{}{0:MM/dd/yyyy}'}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
+                                                </Grid>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </Grid>
                         </Border>
 
                         <!-- Right: Form -->
@@ -166,26 +213,73 @@
                 <!-- I&M - Meters -->
                 <TabItem Header="I&amp;M - Meters">
                     <Grid ColumnDefinitions="2*,3*" Margin="10">
-                        <!-- Same layout as Ohio - Meters -->
-                        <Border Grid.Column="0" BorderBrush="#3f3f46" BorderThickness="1" CornerRadius="4" Padding="5" Margin="0,0,10,0" Background="#2d2d30">
-                            <DataGrid ItemsSource="{Binding Histories}"
-                                     SelectedItem="{Binding SelectedHistory}"
-                                     AutoGenerateColumns="False"
-                                     IsReadOnly="True"
-                                     CanUserResizeColumns="True">
-                                <DataGrid.Columns>
-                                    <DataGridTextColumn Header="DevCode" Binding="{Binding DevCode}" Width="100"/>
-                                    <DataGridTextColumn Header="BegSer" Binding="{Binding BegSer}" Width="100"/>
-                                    <DataGridTextColumn Header="EndSer" Binding="{Binding EndSer}" Width="100"/>
-                                    <DataGridTextColumn Header="OOR" Binding="{Binding OOR}" Width="120"/>
-                                    <DataGridTextColumn Header="Qty" Binding="{Binding Qty}" Width="60"/>
-                                    <DataGridTextColumn Header="PONumber" Binding="{Binding PONumber}" Width="100"/>
-                                    <DataGridTextColumn Header="RecvDate" Binding="{Binding RecvDate, StringFormat='{}{0:MM/dd/yyyy}'}" Width="100"/>
-                                    <DataGridTextColumn Header="CID" Binding="{Binding CID}" Width="80"/>
-                                    <DataGridTextColumn Header="MENumber" Binding="{Binding MENumber}" Width="100"/>
-                                    <DataGridTextColumn Header="Established" Binding="{Binding Established, StringFormat='{}{0:MM/dd/yyyy}'}" Width="100"/>
-                                </DataGrid.Columns>
-                            </DataGrid>
+                        <!-- Left: ListBox-based table -->
+                        <Border Grid.Column="0" BorderBrush="#3f3f46" BorderThickness="1" CornerRadius="4" Margin="0,0,10,0" Background="#2d2d30">
+                            <Grid RowDefinitions="Auto,Auto,*">
+                                <!-- Record Count -->
+                                <TextBlock Grid.Row="0" Text="{Binding Histories.Count, StringFormat='Records: {0}'}"
+                                           Foreground="#999999"
+                                           HorizontalAlignment="Right"
+                                           Margin="0,5,10,5"/>
+                                
+                                <!-- Column Headers -->
+                                <Border Grid.Row="1" Background="#3c3c3c" Padding="8">
+                                    <Grid ColumnDefinitions="80,80,80,100,50,80,80,60,80,80">
+                                        <TextBlock Grid.Column="0" Text="DevCode" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
+                                        <TextBlock Grid.Column="1" Text="BegSer" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
+                                        <TextBlock Grid.Column="2" Text="EndSer" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
+                                        <TextBlock Grid.Column="3" Text="OOR" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
+                                        <TextBlock Grid.Column="4" Text="Qty" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
+                                        <TextBlock Grid.Column="5" Text="PONumber" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
+                                        <TextBlock Grid.Column="6" Text="RecvDate" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
+                                        <TextBlock Grid.Column="7" Text="CID" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
+                                        <TextBlock Grid.Column="8" Text="MENumber" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
+                                        <TextBlock Grid.Column="9" Text="Established" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
+                                    </Grid>
+                                </Border>
+                                
+                                <!-- Data Rows -->
+                                <ListBox Grid.Row="2"
+                                         ItemsSource="{Binding Histories}"
+                                         SelectedItem="{Binding SelectedHistory}"
+                                         Background="Transparent"
+                                         BorderThickness="0">
+                                    <ListBox.Styles>
+                                        <Style Selector="ListBoxItem">
+                                            <Setter Property="Padding" Value="0"/>
+                                            <Setter Property="Margin" Value="0"/>
+                                            <Setter Property="Background" Value="#2d2d30"/>
+                                        </Style>
+                                        <Style Selector="ListBoxItem:nth-child(even)">
+                                            <Setter Property="Background" Value="#252526"/>
+                                        </Style>
+                                        <Style Selector="ListBoxItem:selected">
+                                            <Setter Property="Background" Value="#0078d4"/>
+                                        </Style>
+                                        <Style Selector="ListBoxItem:pointerover">
+                                            <Setter Property="Background" Value="#3a3a3a"/>
+                                        </Style>
+                                    </ListBox.Styles>
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border BorderBrush="#3f3f46" BorderThickness="0,0,0,1" Padding="8,6">
+                                                <Grid ColumnDefinitions="80,80,80,100,50,80,80,60,80,80">
+                                                    <TextBlock Grid.Column="0" Text="{Binding DevCode}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="1" Text="{Binding BegSer}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="2" Text="{Binding EndSer}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="3" Text="{Binding OOR}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
+                                                    <TextBlock Grid.Column="4" Text="{Binding Qty}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="5" Text="{Binding PONumber}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="6" Text="{Binding RecvDate, StringFormat='{}{0:MM/dd/yyyy}'}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="7" Text="{Binding CID}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="8" Text="{Binding MENumber}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="9" Text="{Binding Established, StringFormat='{}{0:MM/dd/yyyy}'}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
+                                                </Grid>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </Grid>
                         </Border>
 
                         <Border Grid.Column="1" BorderBrush="#3f3f46" BorderThickness="1" CornerRadius="4" Padding="15" Background="#2d2d30">
@@ -306,25 +400,73 @@
                 <!-- Ohio - Transformers -->
                 <TabItem Header="Ohio - Transformers">
                     <Grid ColumnDefinitions="2*,3*" Margin="10">
-                        <Border Grid.Column="0" BorderBrush="#3f3f46" BorderThickness="1" CornerRadius="4" Padding="5" Margin="0,0,10,0" Background="#2d2d30">
-                            <DataGrid ItemsSource="{Binding Histories}"
-                                     SelectedItem="{Binding SelectedHistory}"
-                                     AutoGenerateColumns="False"
-                                     IsReadOnly="True"
-                                     CanUserResizeColumns="True">
-                                <DataGrid.Columns>
-                                    <DataGridTextColumn Header="DevCode" Binding="{Binding DevCode}" Width="100"/>
-                                    <DataGridTextColumn Header="BegSer" Binding="{Binding BegSer}" Width="100"/>
-                                    <DataGridTextColumn Header="EndSer" Binding="{Binding EndSer}" Width="100"/>
-                                    <DataGridTextColumn Header="OOR" Binding="{Binding OOR}" Width="120"/>
-                                    <DataGridTextColumn Header="Qty" Binding="{Binding Qty}" Width="60"/>
-                                    <DataGridTextColumn Header="PONumber" Binding="{Binding PONumber}" Width="100"/>
-                                    <DataGridTextColumn Header="RecvDate" Binding="{Binding RecvDate, StringFormat='{}{0:MM/dd/yyyy}'}" Width="100"/>
-                                    <DataGridTextColumn Header="CID" Binding="{Binding CID}" Width="80"/>
-                                    <DataGridTextColumn Header="MENumber" Binding="{Binding MENumber}" Width="100"/>
-                                    <DataGridTextColumn Header="Established" Binding="{Binding Established, StringFormat='{}{0:MM/dd/yyyy}'}" Width="100"/>
-                                </DataGrid.Columns>
-                            </DataGrid>
+                        <!-- Left: ListBox-based table -->
+                        <Border Grid.Column="0" BorderBrush="#3f3f46" BorderThickness="1" CornerRadius="4" Margin="0,0,10,0" Background="#2d2d30">
+                            <Grid RowDefinitions="Auto,Auto,*">
+                                <!-- Record Count -->
+                                <TextBlock Grid.Row="0" Text="{Binding Histories.Count, StringFormat='Records: {0}'}"
+                                           Foreground="#999999"
+                                           HorizontalAlignment="Right"
+                                           Margin="0,5,10,5"/>
+                                
+                                <!-- Column Headers -->
+                                <Border Grid.Row="1" Background="#3c3c3c" Padding="8">
+                                    <Grid ColumnDefinitions="80,80,80,100,50,80,80,60,80,80">
+                                        <TextBlock Grid.Column="0" Text="DevCode" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
+                                        <TextBlock Grid.Column="1" Text="BegSer" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
+                                        <TextBlock Grid.Column="2" Text="EndSer" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
+                                        <TextBlock Grid.Column="3" Text="OOR" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
+                                        <TextBlock Grid.Column="4" Text="Qty" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
+                                        <TextBlock Grid.Column="5" Text="PONumber" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
+                                        <TextBlock Grid.Column="6" Text="RecvDate" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
+                                        <TextBlock Grid.Column="7" Text="CID" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
+                                        <TextBlock Grid.Column="8" Text="MENumber" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
+                                        <TextBlock Grid.Column="9" Text="Established" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
+                                    </Grid>
+                                </Border>
+                                
+                                <!-- Data Rows -->
+                                <ListBox Grid.Row="2"
+                                         ItemsSource="{Binding Histories}"
+                                         SelectedItem="{Binding SelectedHistory}"
+                                         Background="Transparent"
+                                         BorderThickness="0">
+                                    <ListBox.Styles>
+                                        <Style Selector="ListBoxItem">
+                                            <Setter Property="Padding" Value="0"/>
+                                            <Setter Property="Margin" Value="0"/>
+                                            <Setter Property="Background" Value="#2d2d30"/>
+                                        </Style>
+                                        <Style Selector="ListBoxItem:nth-child(even)">
+                                            <Setter Property="Background" Value="#252526"/>
+                                        </Style>
+                                        <Style Selector="ListBoxItem:selected">
+                                            <Setter Property="Background" Value="#0078d4"/>
+                                        </Style>
+                                        <Style Selector="ListBoxItem:pointerover">
+                                            <Setter Property="Background" Value="#3a3a3a"/>
+                                        </Style>
+                                    </ListBox.Styles>
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border BorderBrush="#3f3f46" BorderThickness="0,0,0,1" Padding="8,6">
+                                                <Grid ColumnDefinitions="80,80,80,100,50,80,80,60,80,80">
+                                                    <TextBlock Grid.Column="0" Text="{Binding DevCode}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="1" Text="{Binding BegSer}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="2" Text="{Binding EndSer}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="3" Text="{Binding OOR}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
+                                                    <TextBlock Grid.Column="4" Text="{Binding Qty}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="5" Text="{Binding PONumber}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="6" Text="{Binding RecvDate, StringFormat='{}{0:MM/dd/yyyy}'}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="7" Text="{Binding CID}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="8" Text="{Binding MENumber}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="9" Text="{Binding Established, StringFormat='{}{0:MM/dd/yyyy}'}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
+                                                </Grid>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </Grid>
                         </Border>
 
                         <Border Grid.Column="1" BorderBrush="#3f3f46" BorderThickness="1" CornerRadius="4" Padding="15" Background="#2d2d30">
@@ -445,25 +587,73 @@
                 <!-- I&M - Transformers -->
                 <TabItem Header="I&amp;M - Transformers">
                     <Grid ColumnDefinitions="2*,3*" Margin="10">
-                        <Border Grid.Column="0" BorderBrush="#3f3f46" BorderThickness="1" CornerRadius="4" Padding="5" Margin="0,0,10,0" Background="#2d2d30">
-                            <DataGrid ItemsSource="{Binding Histories}"
-                                     SelectedItem="{Binding SelectedHistory}"
-                                     AutoGenerateColumns="False"
-                                     IsReadOnly="True"
-                                     CanUserResizeColumns="True">
-                                <DataGrid.Columns>
-                                    <DataGridTextColumn Header="DevCode" Binding="{Binding DevCode}" Width="100"/>
-                                    <DataGridTextColumn Header="BegSer" Binding="{Binding BegSer}" Width="100"/>
-                                    <DataGridTextColumn Header="EndSer" Binding="{Binding EndSer}" Width="100"/>
-                                    <DataGridTextColumn Header="OOR" Binding="{Binding OOR}" Width="120"/>
-                                    <DataGridTextColumn Header="Qty" Binding="{Binding Qty}" Width="60"/>
-                                    <DataGridTextColumn Header="PONumber" Binding="{Binding PONumber}" Width="100"/>
-                                    <DataGridTextColumn Header="RecvDate" Binding="{Binding RecvDate, StringFormat='{}{0:MM/dd/yyyy}'}" Width="100"/>
-                                    <DataGridTextColumn Header="CID" Binding="{Binding CID}" Width="80"/>
-                                    <DataGridTextColumn Header="MENumber" Binding="{Binding MENumber}" Width="100"/>
-                                    <DataGridTextColumn Header="Established" Binding="{Binding Established, StringFormat='{}{0:MM/dd/yyyy}'}" Width="100"/>
-                                </DataGrid.Columns>
-                            </DataGrid>
+                        <!-- Left: ListBox-based table -->
+                        <Border Grid.Column="0" BorderBrush="#3f3f46" BorderThickness="1" CornerRadius="4" Margin="0,0,10,0" Background="#2d2d30">
+                            <Grid RowDefinitions="Auto,Auto,*">
+                                <!-- Record Count -->
+                                <TextBlock Grid.Row="0" Text="{Binding Histories.Count, StringFormat='Records: {0}'}"
+                                           Foreground="#999999"
+                                           HorizontalAlignment="Right"
+                                           Margin="0,5,10,5"/>
+                                
+                                <!-- Column Headers -->
+                                <Border Grid.Row="1" Background="#3c3c3c" Padding="8">
+                                    <Grid ColumnDefinitions="80,80,80,100,50,80,80,60,80,80">
+                                        <TextBlock Grid.Column="0" Text="DevCode" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
+                                        <TextBlock Grid.Column="1" Text="BegSer" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
+                                        <TextBlock Grid.Column="2" Text="EndSer" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
+                                        <TextBlock Grid.Column="3" Text="OOR" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
+                                        <TextBlock Grid.Column="4" Text="Qty" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
+                                        <TextBlock Grid.Column="5" Text="PONumber" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
+                                        <TextBlock Grid.Column="6" Text="RecvDate" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
+                                        <TextBlock Grid.Column="7" Text="CID" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
+                                        <TextBlock Grid.Column="8" Text="MENumber" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
+                                        <TextBlock Grid.Column="9" Text="Established" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
+                                    </Grid>
+                                </Border>
+                                
+                                <!-- Data Rows -->
+                                <ListBox Grid.Row="2"
+                                         ItemsSource="{Binding Histories}"
+                                         SelectedItem="{Binding SelectedHistory}"
+                                         Background="Transparent"
+                                         BorderThickness="0">
+                                    <ListBox.Styles>
+                                        <Style Selector="ListBoxItem">
+                                            <Setter Property="Padding" Value="0"/>
+                                            <Setter Property="Margin" Value="0"/>
+                                            <Setter Property="Background" Value="#2d2d30"/>
+                                        </Style>
+                                        <Style Selector="ListBoxItem:nth-child(even)">
+                                            <Setter Property="Background" Value="#252526"/>
+                                        </Style>
+                                        <Style Selector="ListBoxItem:selected">
+                                            <Setter Property="Background" Value="#0078d4"/>
+                                        </Style>
+                                        <Style Selector="ListBoxItem:pointerover">
+                                            <Setter Property="Background" Value="#3a3a3a"/>
+                                        </Style>
+                                    </ListBox.Styles>
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border BorderBrush="#3f3f46" BorderThickness="0,0,0,1" Padding="8,6">
+                                                <Grid ColumnDefinitions="80,80,80,100,50,80,80,60,80,80">
+                                                    <TextBlock Grid.Column="0" Text="{Binding DevCode}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="1" Text="{Binding BegSer}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="2" Text="{Binding EndSer}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="3" Text="{Binding OOR}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
+                                                    <TextBlock Grid.Column="4" Text="{Binding Qty}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="5" Text="{Binding PONumber}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="6" Text="{Binding RecvDate, StringFormat='{}{0:MM/dd/yyyy}'}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="7" Text="{Binding CID}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="8" Text="{Binding MENumber}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="9" Text="{Binding Established, StringFormat='{}{0:MM/dd/yyyy}'}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
+                                                </Grid>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </Grid>
                         </Border>
 
                         <Border Grid.Column="1" BorderBrush="#3f3f46" BorderThickness="1" CornerRadius="4" Padding="15" Background="#2d2d30">
