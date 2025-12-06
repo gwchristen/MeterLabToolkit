@@ -53,6 +53,13 @@
                                 <StackPanel Spacing="10">
                                     <TextBlock Text="Record Details" FontSize="16" FontWeight="SemiBold" Foreground="#ffffff" Margin="0,0,0,10"/>
 
+                                    <!-- Status Message -->
+                                    <TextBlock Text="{Binding StatusMessage}"
+                                               Foreground="#d13438"
+                                               IsVisible="{Binding StatusMessage, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                                               Margin="0,0,0,10"
+                                               FontWeight="SemiBold"/>
+
                                     <StackPanel Spacing="5">
                                         <TextBlock Text="Status" FontWeight="Medium" Foreground="#cccccc"/>
                                         <ComboBox ItemsSource="{Binding Statuses}"
@@ -186,6 +193,13 @@
                                 <StackPanel Spacing="10">
                                     <TextBlock Text="Record Details" FontSize="16" FontWeight="SemiBold" Foreground="#ffffff" Margin="0,0,0,10"/>
 
+                                    <!-- Status Message -->
+                                    <TextBlock Text="{Binding StatusMessage}"
+                                               Foreground="#d13438"
+                                               IsVisible="{Binding StatusMessage, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                                               Margin="0,0,0,10"
+                                               FontWeight="SemiBold"/>
+
                                     <StackPanel Spacing="5">
                                         <TextBlock Text="Status" FontWeight="Medium" Foreground="#cccccc"/>
                                         <ComboBox ItemsSource="{Binding Statuses}"
@@ -318,6 +332,13 @@
                                 <StackPanel Spacing="10">
                                     <TextBlock Text="Record Details" FontSize="16" FontWeight="SemiBold" Foreground="#ffffff" Margin="0,0,0,10"/>
 
+                                    <!-- Status Message -->
+                                    <TextBlock Text="{Binding StatusMessage}"
+                                               Foreground="#d13438"
+                                               IsVisible="{Binding StatusMessage, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                                               Margin="0,0,0,10"
+                                               FontWeight="SemiBold"/>
+
                                     <StackPanel Spacing="5">
                                         <TextBlock Text="Status" FontWeight="Medium" Foreground="#cccccc"/>
                                         <ComboBox ItemsSource="{Binding Statuses}"
@@ -449,6 +470,13 @@
                             <ScrollViewer VerticalScrollBarVisibility="Auto">
                                 <StackPanel Spacing="10">
                                     <TextBlock Text="Record Details" FontSize="16" FontWeight="SemiBold" Foreground="#ffffff" Margin="0,0,0,10"/>
+
+                                    <!-- Status Message -->
+                                    <TextBlock Text="{Binding StatusMessage}"
+                                               Foreground="#d13438"
+                                               IsVisible="{Binding StatusMessage, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                                               Margin="0,0,0,10"
+                                               FontWeight="SemiBold"/>
 
                                     <StackPanel Spacing="5">
                                         <TextBlock Text="Status" FontWeight="Medium" Foreground="#cccccc"/>

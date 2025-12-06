@@ -98,6 +98,13 @@ public partial class CreatedHistoriesViewModel : ViewModelBase
     [ObservableProperty]
     private string _searchText = string.Empty;
 
+    // Status message for validation and save feedback
+    [ObservableProperty]
+    private string? _statusMessage;
+
+    [ObservableProperty]
+    private bool _isError;
+
     private List<CreatedHistory> _allHistories = new();
 
     public CreatedHistoriesViewModel(IDataService dataService)
@@ -322,6 +329,13 @@ public partial class CreatedHistoriesViewModel : ViewModelBase
 
     private void ClearForm()
     {
+        ClearFormFields();
+        StatusMessage = null;
+        IsError = false;
+    }
+
+    private void ClearFormFields()
+    {
         SelectedStatus = null;
         SelectedManufacturer = null;
         SelectedDevCode = null;
@@ -343,83 +357,161 @@ public partial class CreatedHistoriesViewModel : ViewModelBase
     [RelayCommand]
     private async Task SaveAsync()
     {
-        // Validation
+        StatusMessage = null;
+        IsError = false;
+        
         if (!ValidateForm())
         {
             return;
         }
 
-        var history = SelectedHistory ?? new CreatedHistory();
-
-        // Populate from form
-        history.OpCo = SelectedOpCo;
-        history.DeviceType = SelectedDeviceType;
-        history.Status = SelectedStatus?.Code ?? string.Empty;
-        history.MFR = SelectedManufacturer?.Code ?? string.Empty;
-        history.DevCode = SelectedDevCode?.Code ?? string.Empty;
-        history.BegSer = string.IsNullOrWhiteSpace(BegSer) ? null : BegSer;
-        history.EndSer = string.IsNullOrWhiteSpace(EndSer) ? null : EndSer;
-        history.OOR = string.IsNullOrWhiteSpace(Oor) ? null : Oor;
-        history.Qty = Qty;
-        history.PODate = PoDate?.DateTime ?? DateTime.Now;
-        history.PONumber = PoNumber;
-        history.RecvDate = RecvDate?.DateTime ?? DateTime.Now;
-        history.UnitCost = UnitCost;
-        history.CID = Cid;
-        history.MENumber = MeNumber;
-        history.PurCode = SelectedPurCode?.Code ?? string.Empty;
-        history.Established = Established?.DateTime ?? DateTime.Now;
-        history.Notes = string.IsNullOrWhiteSpace(Notes) ? null : Notes;
-
-        if (SelectedHistory == null)
+        try
         {
-            await _dataService.AddCreatedHistoryAsync(history);
-        }
-        else
-        {
-            await _dataService.UpdateCreatedHistoryAsync(history);
-        }
+            var history = SelectedHistory ?? new CreatedHistory();
 
-        await LoadHistoriesAsync();
-        ClearForm();
+            // Populate from form
+            history.OpCo = SelectedOpCo;
+            history.DeviceType = SelectedDeviceType;
+            history.Status = SelectedStatus?.Code ?? string.Empty;
+            history.MFR = SelectedManufacturer?.Code ?? string.Empty;
+            history.DevCode = SelectedDevCode?.Code ?? string.Empty;
+            history.BegSer = string.IsNullOrWhiteSpace(BegSer) ? null : BegSer;
+            history.EndSer = string.IsNullOrWhiteSpace(EndSer) ? null : EndSer;
+            history.OOR = string.IsNullOrWhiteSpace(Oor) ? null : Oor;
+            history.Qty = Qty;
+            history.PODate = PoDate?.DateTime ?? DateTime.Now;
+            history.PONumber = PoNumber;
+            history.RecvDate = RecvDate?.DateTime ?? DateTime.Now;
+            history.UnitCost = UnitCost;
+            history.CID = Cid;
+            history.MENumber = MeNumber;
+            history.PurCode = SelectedPurCode?.Code ?? string.Empty;
+            history.Established = Established?.DateTime ?? DateTime.Now;
+            history.Notes = string.IsNullOrWhiteSpace(Notes) ? null : Notes;
+
+            if (SelectedHistory == null)
+            {
+                await _dataService.AddCreatedHistoryAsync(history);
+                StatusMessage = "Record saved successfully!";
+            }
+            else
+            {
+                await _dataService.UpdateCreatedHistoryAsync(history);
+                StatusMessage = "Record updated successfully!";
+            }
+            
+            IsError = false;
+            await LoadHistoriesAsync();
+            ClearFormFields();
+        }
+        catch (Exception ex)
+        {
+            StatusMessage = $"Error saving record: {ex.Message}";
+            IsError = true;
+            System.Diagnostics.Debug.WriteLine($"Save error: {ex}");
+        }
     }
 
     private bool ValidateForm()
     {
         // Required field validation
-        if (SelectedStatus == null || SelectedManufacturer == null || 
-            SelectedDevCode == null || SelectedPurCode == null)
+        if (SelectedStatus == null)
         {
+            StatusMessage = "Please select a Status.";
+            IsError = true;
+            return false;
+        }
+        
+        if (SelectedManufacturer == null)
+        {
+            StatusMessage = "Please select a Manufacturer.";
+            IsError = true;
+            return false;
+        }
+        
+        if (SelectedDevCode == null)
+        {
+            StatusMessage = "Please select a Device Code.";
+            IsError = true;
+            return false;
+        }
+        
+        if (SelectedPurCode == null)
+        {
+            StatusMessage = "Please select a Purchase Code.";
+            IsError = true;
             return false;
         }
 
-        if (string.IsNullOrWhiteSpace(PoNumber) || string.IsNullOrWhiteSpace(Cid) || 
-            string.IsNullOrWhiteSpace(MeNumber))
+        if (string.IsNullOrWhiteSpace(PoNumber))
         {
+            StatusMessage = "PO Number is required.";
+            IsError = true;
+            return false;
+        }
+        
+        if (string.IsNullOrWhiteSpace(Cid))
+        {
+            StatusMessage = "CID is required.";
+            IsError = true;
+            return false;
+        }
+        
+        if (string.IsNullOrWhiteSpace(MeNumber))
+        {
+            StatusMessage = "ME Number is required.";
+            IsError = true;
             return false;
         }
 
         // Date validation
-        if (!PoDate.HasValue || !RecvDate.HasValue || !Established.HasValue)
+        if (!PoDate.HasValue)
         {
+            StatusMessage = "PO Date is required.";
+            IsError = true;
+            return false;
+        }
+        
+        if (!RecvDate.HasValue)
+        {
+            StatusMessage = "Received Date is required.";
+            IsError = true;
+            return false;
+        }
+        
+        if (!Established.HasValue)
+        {
+            StatusMessage = "Established Date is required.";
+            IsError = true;
             return false;
         }
 
-        // Serial validation: Either (BegSer AND EndSer) OR OOR must have value
+        // Serial validation
         var hasBegEnd = !string.IsNullOrWhiteSpace(BegSer) && !string.IsNullOrWhiteSpace(EndSer);
         var hasOor = !string.IsNullOrWhiteSpace(Oor);
 
         if (!hasBegEnd && !hasOor)
         {
-            return false; // Neither
+            StatusMessage = "Enter either Beginning/Ending Serial OR Out of Range serials.";
+            IsError = true;
+            return false;
         }
 
         if (hasBegEnd && hasOor)
         {
-            return false; // Both
+            StatusMessage = "Cannot have both Beginning/Ending Serial AND Out of Range serials.";
+            IsError = true;
+            return false;
         }
 
-        return Qty > 0;
+        if (Qty <= 0)
+        {
+            StatusMessage = "Quantity must be greater than zero.";
+            IsError = true;
+            return false;
+        }
+
+        return true;
     }
 
     [RelayCommand]
