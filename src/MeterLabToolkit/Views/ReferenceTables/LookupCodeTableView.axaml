@@ -34,7 +34,8 @@
                 BorderBrush="#3f3f46" 
                 BorderThickness="1"
                 CornerRadius="4"
-                Margin="0,0,0,10">
+                Margin="0,0,0,10"
+                MinHeight="200">
             <Grid RowDefinitions="Auto,*">
                 <!-- Column Headers -->
                 <Border Grid.Row="0" Background="#3c3c3c" Padding="12,8">
