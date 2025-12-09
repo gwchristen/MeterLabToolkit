@@ -24,7 +24,7 @@
             <TabControl SelectedIndex="{Binding SelectedTabIndex}">
                 <!-- Ohio - Meters -->
                 <TabItem Header="Ohio - Meters">
-                    <Grid ColumnDefinitions="2*,3*" Margin="10">
+                    <Grid ColumnDefinitions="*,350" Margin="10">
                         <!-- Left: ListBox-based table -->
                         <Border Grid.Column="0" BorderBrush="#3f3f46" BorderThickness="1" CornerRadius="4" Margin="0,0,10,0" Background="#2d2d30">
                             <Grid RowDefinitions="Auto,Auto,*">
@@ -36,7 +36,7 @@
                                 
                                 <!-- Column Headers -->
                                 <Border Grid.Row="1" Background="#3c3c3c" Padding="8">
-                                    <Grid ColumnDefinitions="80,80,80,100,50,80,80,60,80,80">
+                                    <Grid ColumnDefinitions="80,80,80,100,50,80,80,60,80">
                                         <TextBlock Grid.Column="0" Text="DevCode" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
                                         <TextBlock Grid.Column="1" Text="BegSer" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
                                         <TextBlock Grid.Column="2" Text="EndSer" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
@@ -45,8 +45,7 @@
                                         <TextBlock Grid.Column="5" Text="PONumber" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
                                         <TextBlock Grid.Column="6" Text="RecvDate" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
                                         <TextBlock Grid.Column="7" Text="CID" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
-                                        <TextBlock Grid.Column="8" Text="MENumber" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
-                                        <TextBlock Grid.Column="9" Text="Established" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
+                                        <TextBlock Grid.Column="8" Text="Established" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
                                     </Grid>
                                 </Border>
                                 
@@ -75,7 +74,7 @@
                                     <ListBox.ItemTemplate>
                                         <DataTemplate>
                                             <Border BorderBrush="#3f3f46" BorderThickness="0,0,0,1" Padding="8,6">
-                                                <Grid ColumnDefinitions="80,80,80,100,50,80,80,60,80,80">
+                                                <Grid ColumnDefinitions="80,80,80,100,50,80,80,60,80">
                                                     <TextBlock Grid.Column="0" Text="{Binding DevCode}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
                                                     <TextBlock Grid.Column="1" Text="{Binding BegSer}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
                                                     <TextBlock Grid.Column="2" Text="{Binding EndSer}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
@@ -84,8 +83,7 @@
                                                     <TextBlock Grid.Column="5" Text="{Binding PONumber}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
                                                     <TextBlock Grid.Column="6" Text="{Binding RecvDate, StringFormat='{}{0:MM/dd/yyyy}'}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
                                                     <TextBlock Grid.Column="7" Text="{Binding CID}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
-                                                    <TextBlock Grid.Column="8" Text="{Binding MENumber}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
-                                                    <TextBlock Grid.Column="9" Text="{Binding Established, StringFormat='{}{0:MM/dd/yyyy}'}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="8" Text="{Binding Established, StringFormat='{}{0:MM/dd/yyyy}'}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
                                                 </Grid>
                                             </Border>
                                         </DataTemplate>
@@ -212,7 +210,7 @@
 
                 <!-- I&M - Meters -->
                 <TabItem Header="I&amp;M - Meters">
-                    <Grid ColumnDefinitions="2*,3*" Margin="10">
+                    <Grid ColumnDefinitions="*,350" Margin="10">
                         <!-- Left: ListBox-based table -->
                         <Border Grid.Column="0" BorderBrush="#3f3f46" BorderThickness="1" CornerRadius="4" Margin="0,0,10,0" Background="#2d2d30">
                             <Grid RowDefinitions="Auto,Auto,*">
@@ -224,7 +222,7 @@
                                 
                                 <!-- Column Headers -->
                                 <Border Grid.Row="1" Background="#3c3c3c" Padding="8">
-                                    <Grid ColumnDefinitions="80,80,80,100,50,80,80,60,80,80">
+                                    <Grid ColumnDefinitions="80,80,80,100,50,80,80,60,80">
                                         <TextBlock Grid.Column="0" Text="DevCode" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
                                         <TextBlock Grid.Column="1" Text="BegSer" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
                                         <TextBlock Grid.Column="2" Text="EndSer" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
@@ -233,8 +231,7 @@
                                         <TextBlock Grid.Column="5" Text="PONumber" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
                                         <TextBlock Grid.Column="6" Text="RecvDate" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
                                         <TextBlock Grid.Column="7" Text="CID" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
-                                        <TextBlock Grid.Column="8" Text="MENumber" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
-                                        <TextBlock Grid.Column="9" Text="Established" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
+                                        <TextBlock Grid.Column="8" Text="Established" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
                                     </Grid>
                                 </Border>
                                 
@@ -263,7 +260,7 @@
                                     <ListBox.ItemTemplate>
                                         <DataTemplate>
                                             <Border BorderBrush="#3f3f46" BorderThickness="0,0,0,1" Padding="8,6">
-                                                <Grid ColumnDefinitions="80,80,80,100,50,80,80,60,80,80">
+                                                <Grid ColumnDefinitions="80,80,80,100,50,80,80,60,80">
                                                     <TextBlock Grid.Column="0" Text="{Binding DevCode}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
                                                     <TextBlock Grid.Column="1" Text="{Binding BegSer}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
                                                     <TextBlock Grid.Column="2" Text="{Binding EndSer}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
@@ -272,8 +269,7 @@
                                                     <TextBlock Grid.Column="5" Text="{Binding PONumber}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
                                                     <TextBlock Grid.Column="6" Text="{Binding RecvDate, StringFormat='{}{0:MM/dd/yyyy}'}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
                                                     <TextBlock Grid.Column="7" Text="{Binding CID}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
-                                                    <TextBlock Grid.Column="8" Text="{Binding MENumber}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
-                                                    <TextBlock Grid.Column="9" Text="{Binding Established, StringFormat='{}{0:MM/dd/yyyy}'}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="8" Text="{Binding Established, StringFormat='{}{0:MM/dd/yyyy}'}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
                                                 </Grid>
                                             </Border>
                                         </DataTemplate>
@@ -399,7 +395,7 @@
 
                 <!-- Ohio - Transformers -->
                 <TabItem Header="Ohio - Transformers">
-                    <Grid ColumnDefinitions="2*,3*" Margin="10">
+                    <Grid ColumnDefinitions="*,350" Margin="10">
                         <!-- Left: ListBox-based table -->
                         <Border Grid.Column="0" BorderBrush="#3f3f46" BorderThickness="1" CornerRadius="4" Margin="0,0,10,0" Background="#2d2d30">
                             <Grid RowDefinitions="Auto,Auto,*">
@@ -411,7 +407,7 @@
                                 
                                 <!-- Column Headers -->
                                 <Border Grid.Row="1" Background="#3c3c3c" Padding="8">
-                                    <Grid ColumnDefinitions="80,80,80,100,50,80,80,60,80,80">
+                                    <Grid ColumnDefinitions="80,80,80,100,50,80,80,60,80">
                                         <TextBlock Grid.Column="0" Text="DevCode" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
                                         <TextBlock Grid.Column="1" Text="BegSer" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
                                         <TextBlock Grid.Column="2" Text="EndSer" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
@@ -420,8 +416,7 @@
                                         <TextBlock Grid.Column="5" Text="PONumber" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
                                         <TextBlock Grid.Column="6" Text="RecvDate" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
                                         <TextBlock Grid.Column="7" Text="CID" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
-                                        <TextBlock Grid.Column="8" Text="MENumber" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
-                                        <TextBlock Grid.Column="9" Text="Established" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
+                                        <TextBlock Grid.Column="8" Text="Established" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
                                     </Grid>
                                 </Border>
                                 
@@ -450,7 +445,7 @@
                                     <ListBox.ItemTemplate>
                                         <DataTemplate>
                                             <Border BorderBrush="#3f3f46" BorderThickness="0,0,0,1" Padding="8,6">
-                                                <Grid ColumnDefinitions="80,80,80,100,50,80,80,60,80,80">
+                                                <Grid ColumnDefinitions="80,80,80,100,50,80,80,60,80">
                                                     <TextBlock Grid.Column="0" Text="{Binding DevCode}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
                                                     <TextBlock Grid.Column="1" Text="{Binding BegSer}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
                                                     <TextBlock Grid.Column="2" Text="{Binding EndSer}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
@@ -459,8 +454,7 @@
                                                     <TextBlock Grid.Column="5" Text="{Binding PONumber}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
                                                     <TextBlock Grid.Column="6" Text="{Binding RecvDate, StringFormat='{}{0:MM/dd/yyyy}'}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
                                                     <TextBlock Grid.Column="7" Text="{Binding CID}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
-                                                    <TextBlock Grid.Column="8" Text="{Binding MENumber}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
-                                                    <TextBlock Grid.Column="9" Text="{Binding Established, StringFormat='{}{0:MM/dd/yyyy}'}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="8" Text="{Binding Established, StringFormat='{}{0:MM/dd/yyyy}'}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
                                                 </Grid>
                                             </Border>
                                         </DataTemplate>
@@ -586,7 +580,7 @@
 
                 <!-- I&M - Transformers -->
                 <TabItem Header="I&amp;M - Transformers">
-                    <Grid ColumnDefinitions="2*,3*" Margin="10">
+                    <Grid ColumnDefinitions="*,350" Margin="10">
                         <!-- Left: ListBox-based table -->
                         <Border Grid.Column="0" BorderBrush="#3f3f46" BorderThickness="1" CornerRadius="4" Margin="0,0,10,0" Background="#2d2d30">
                             <Grid RowDefinitions="Auto,Auto,*">
@@ -598,7 +592,7 @@
                                 
                                 <!-- Column Headers -->
                                 <Border Grid.Row="1" Background="#3c3c3c" Padding="8">
-                                    <Grid ColumnDefinitions="80,80,80,100,50,80,80,60,80,80">
+                                    <Grid ColumnDefinitions="80,80,80,100,50,80,80,60,80">
                                         <TextBlock Grid.Column="0" Text="DevCode" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
                                         <TextBlock Grid.Column="1" Text="BegSer" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
                                         <TextBlock Grid.Column="2" Text="EndSer" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
@@ -607,8 +601,7 @@
                                         <TextBlock Grid.Column="5" Text="PONumber" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
                                         <TextBlock Grid.Column="6" Text="RecvDate" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
                                         <TextBlock Grid.Column="7" Text="CID" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
-                                        <TextBlock Grid.Column="8" Text="MENumber" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
-                                        <TextBlock Grid.Column="9" Text="Established" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
+                                        <TextBlock Grid.Column="8" Text="Established" FontWeight="Bold" Foreground="#ffffff" FontSize="11"/>
                                     </Grid>
                                 </Border>
                                 
@@ -637,7 +630,7 @@
                                     <ListBox.ItemTemplate>
                                         <DataTemplate>
                                             <Border BorderBrush="#3f3f46" BorderThickness="0,0,0,1" Padding="8,6">
-                                                <Grid ColumnDefinitions="80,80,80,100,50,80,80,60,80,80">
+                                                <Grid ColumnDefinitions="80,80,80,100,50,80,80,60,80">
                                                     <TextBlock Grid.Column="0" Text="{Binding DevCode}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
                                                     <TextBlock Grid.Column="1" Text="{Binding BegSer}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
                                                     <TextBlock Grid.Column="2" Text="{Binding EndSer}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
@@ -646,8 +639,7 @@
                                                     <TextBlock Grid.Column="5" Text="{Binding PONumber}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
                                                     <TextBlock Grid.Column="6" Text="{Binding RecvDate, StringFormat='{}{0:MM/dd/yyyy}'}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
                                                     <TextBlock Grid.Column="7" Text="{Binding CID}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
-                                                    <TextBlock Grid.Column="8" Text="{Binding MENumber}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
-                                                    <TextBlock Grid.Column="9" Text="{Binding Established, StringFormat='{}{0:MM/dd/yyyy}'}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="8" Text="{Binding Established, StringFormat='{}{0:MM/dd/yyyy}'}" Foreground="#e0e0e0" FontSize="11" VerticalAlignment="Center"/>
                                                 </Grid>
                                             </Border>
                                         </DataTemplate>
