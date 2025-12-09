@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Avalonia;
@@ -23,7 +24,7 @@ public partial class PurchaseCodeTableViewModel : ReferenceTableViewModelBase
     private ObservableCollection<PurchaseCode> _items = new();
 
     [ObservableProperty]
-    private PurchaseCode? _selectedItem;
+    private System.Collections.IList? _selectedItems;
 
     [ObservableProperty]
     private bool _isLoading;
@@ -44,7 +45,6 @@ public partial class PurchaseCodeTableViewModel : ReferenceTableViewModelBase
         {
             var newItem = new PurchaseCode { Code = "", Description = "" };
             Items.Add(newItem);
-            SelectedItem = newItem;
             ErrorMessage = "New row added. Edit the values and click Save.";
         }
         catch (Exception ex)
@@ -97,9 +97,9 @@ public partial class PurchaseCodeTableViewModel : ReferenceTableViewModelBase
     [RelayCommand]
     private async Task DeleteAsync()
     {
-        if (SelectedItem == null)
+        if (SelectedItems == null || SelectedItems.Count == 0)
         {
-            ErrorMessage = "Please select a row to delete.";
+            ErrorMessage = "Please select one or more rows to delete.";
             return;
         }
 
@@ -108,14 +108,20 @@ public partial class PurchaseCodeTableViewModel : ReferenceTableViewModelBase
             IsLoading = true;
             ErrorMessage = null;
 
-            if (SelectedItem.Id > 0)
+            var itemsToDelete = SelectedItems.Cast<PurchaseCode>().ToList();
+            int deletedCount = 0;
+
+            foreach (var item in itemsToDelete)
             {
-                await _dataService.DeletePurchaseCodeAsync(SelectedItem.Id);
+                if (item.Id > 0)
+                {
+                    await _dataService.DeletePurchaseCodeAsync(item.Id);
+                }
+                Items.Remove(item);
+                deletedCount++;
             }
 
-            Items.Remove(SelectedItem);
-            SelectedItem = null;
-            ErrorMessage = "Record deleted successfully.";
+            ErrorMessage = $"{deletedCount} record(s) deleted successfully.";
         }
         catch (Exception ex)
         {
@@ -221,6 +227,7 @@ public partial class PurchaseCodeTableViewModel : ReferenceTableViewModelBase
             var lines = content.Split('\n', StringSplitOptions.RemoveEmptyEntries);
             
             int importedCount = 0;
+            int duplicatesSkipped = 0;
             // Skip header row
             for (int i = 1; i < lines.Length; i++)
             {
@@ -232,12 +239,25 @@ public partial class PurchaseCodeTableViewModel : ReferenceTableViewModelBase
                         Code = values[0].Trim('"').Trim(), 
                         Description = values[1].Trim('"').Trim() 
                     };
-                    Items.Add(item);
-                    importedCount++;
+                    
+                    // Check for duplicates
+                    bool isDuplicate = Items.Any(existing => 
+                        existing.Code.Equals(item.Code, StringComparison.OrdinalIgnoreCase) &&
+                        existing.Description.Equals(item.Description, StringComparison.OrdinalIgnoreCase));
+                    
+                    if (!isDuplicate)
+                    {
+                        Items.Add(item);
+                        importedCount++;
+                    }
+                    else
+                    {
+                        duplicatesSkipped++;
+                    }
                 }
             }
             
-            ErrorMessage = $"Successfully imported {importedCount} records. Click Save to persist.";
+            ErrorMessage = $"Successfully imported {importedCount} record(s) ({duplicatesSkipped} duplicate(s) skipped). Click Save to persist.";
         }
         catch (Exception ex)
         {
