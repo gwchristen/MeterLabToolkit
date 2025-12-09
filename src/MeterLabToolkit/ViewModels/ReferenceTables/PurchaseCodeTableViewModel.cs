@@ -108,7 +108,7 @@ public partial class PurchaseCodeTableViewModel : ReferenceTableViewModelBase
             IsLoading = true;
             ErrorMessage = null;
 
-            var itemsToDelete = SelectedItems.Cast<PurchaseCode>().ToList();
+            var itemsToDelete = SelectedItems.OfType<PurchaseCode>().ToList();
             int deletedCount = 0;
 
             foreach (var item in itemsToDelete)

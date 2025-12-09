@@ -108,7 +108,7 @@ public partial class ManufacturerTableViewModel : ReferenceTableViewModelBase
             IsLoading = true;
             ErrorMessage = null;
 
-            var itemsToDelete = SelectedItems.Cast<ManufacturerCode>().ToList();
+            var itemsToDelete = SelectedItems.OfType<ManufacturerCode>().ToList();
             int deletedCount = 0;
 
             foreach (var item in itemsToDelete)

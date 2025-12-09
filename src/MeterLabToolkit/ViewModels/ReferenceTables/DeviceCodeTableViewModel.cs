@@ -108,7 +108,7 @@ public partial class DeviceCodeTableViewModel : ReferenceTableViewModelBase
             IsLoading = true;
             ErrorMessage = null;
 
-            var itemsToDelete = SelectedItems.Cast<DeviceCode>().ToList();
+            var itemsToDelete = SelectedItems.OfType<DeviceCode>().ToList();
             int deletedCount = 0;
 
             foreach (var item in itemsToDelete)

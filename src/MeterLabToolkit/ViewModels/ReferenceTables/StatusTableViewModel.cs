@@ -108,7 +108,7 @@ public partial class StatusTableViewModel : ReferenceTableViewModelBase
             IsLoading = true;
             ErrorMessage = null;
 
-            var itemsToDelete = SelectedItems.Cast<Status>().ToList();
+            var itemsToDelete = SelectedItems.OfType<Status>().ToList();
             int deletedCount = 0;
 
             foreach (var item in itemsToDelete)

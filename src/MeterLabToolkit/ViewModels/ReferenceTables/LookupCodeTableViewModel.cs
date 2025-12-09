@@ -108,7 +108,7 @@ public partial class LookupCodeTableViewModel : ReferenceTableViewModelBase
             IsLoading = true;
             ErrorMessage = null;
 
-            var itemsToDelete = SelectedItems.Cast<LookupCode>().ToList();
+            var itemsToDelete = SelectedItems.OfType<LookupCode>().ToList();
             int deletedCount = 0;
 
             foreach (var item in itemsToDelete)

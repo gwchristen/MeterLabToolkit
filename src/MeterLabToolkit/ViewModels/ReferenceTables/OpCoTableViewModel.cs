@@ -108,7 +108,7 @@ public partial class OpCoTableViewModel : ReferenceTableViewModelBase
             IsLoading = true;
             ErrorMessage = null;
 
-            var itemsToDelete = SelectedItems.Cast<OpCo>().ToList();
+            var itemsToDelete = SelectedItems.OfType<OpCo>().ToList();
             int deletedCount = 0;
 
             foreach (var item in itemsToDelete)
