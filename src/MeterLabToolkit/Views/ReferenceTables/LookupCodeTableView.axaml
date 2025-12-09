@@ -49,10 +49,10 @@
                 <!-- Data Rows using ListBox -->
                 <ListBox Grid.Row="1"
                          ItemsSource="{Binding Items}"
-                         SelectedItem="{Binding SelectedItem}"
+                         SelectedItems="{Binding SelectedItems}"
                          Background="Transparent"
                          BorderThickness="0"
-                         SelectionMode="Single">
+                         SelectionMode="Multiple">
                     <ListBox.Styles>
                         <Style Selector="ListBoxItem">
                             <Setter Property="Padding" Value="0"/>
